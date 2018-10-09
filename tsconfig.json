@@ -1,8 +1,21 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "target": "esnext",
-        "module": "esnext",
+        "target": "es2017",
+        "module": "commonjs",
+        "strict": true,
+        "noImplicitAny": false,
+        "emitDecoratorMetadata": true,
+        "charset": "utf8",
+        "pretty": true,
+        "noEmitOnError": false,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+        "strictPropertyInitialization": false,
+        "noFallthroughCasesInSwitch": true,
+        "skipDefaultLibCheck": true,
+        "inlineSourceMap": true,
+        "importHelpers": true,
         "jsx": "preserve",
         "allowJs": true,
         "moduleResolution": "node",
@@ -14,7 +27,6 @@
         "preserveConstEnums": true,
         "sourceMap": true,
         "skipLibCheck": true,
-        "baseUrl": "./src",
         "typeRoots": [
             "./node_modules/@types"
         ],
@@ -23,5 +35,10 @@
             "es2015",
             "es2016"
         ]
-    }
+    },
+    "exclude": [
+        "app/public",
+        "app/views",
+        "node_modules*"
+    ]
 }
