@@ -1,12 +1,11 @@
 {
-
   "private": true,
   "name": "stackgist",
   "version": "1.0.0",
   "description": "stackgist",
   "main": "index.js",
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-stackgist ./server",
+    "start": "egg-scripts start --daemon --title=egg-server-stackgist",
     "stop": "egg-scripts stop --title=egg-server-stackgist",
     "dev": "egg-bin dev -r egg-ts-helper/register",
     "debug": "egg-bin debug -r egg-ts-helper/register",
