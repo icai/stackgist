@@ -11,6 +11,15 @@ egg(koa) + next.js + wordpress(ddl) + ant-design
 
 
 
+## Dev Roadmap
+
+- [ ] 整合egg，next.js 
+- [ ] 整合wordpress ddl，初始化sequelize
+- [ ] wordpress curd 逻辑
+- [ ] 后台构建（ant-design）
+- ...
+
+
 ## Reference
 
 
