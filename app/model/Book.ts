@@ -5,15 +5,15 @@ import { Author } from './Author';
   withAuthors: {
     include: [{
       model: () => Author,
-      through: { attributes: [] },
-    }],
-  },
+      through: { attributes: [] }
+    }]
+  }
 })
 @Table
 export default class Book extends Model<Book> {
 
   @Column({
-    type: DataType.STRING(50),
+    type: DataType.STRING(50)
   })
   title: string;
 

@@ -1,5 +1,6 @@
 {
   "extends": "tslint-config-egg",
   "rules": {
+    "trailing-comma": [true, {"multiline": "never", "singleline": "never"}]
   }
 }

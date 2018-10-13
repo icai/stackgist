@@ -2,17 +2,17 @@ import {
   Table, Model, PrimaryKey, Column, AutoIncrement, BelongsToMany,
   ForeignKey, BelongsTo, HasMany, Scopes
 } from 'sequelize-typescript';
-import {Comment} from './Comment';
-import {PostTopic} from './PostTopic';
-import {Topic} from './Topic';
-import {Author} from './Author';
+import { Comment } from './Comment';
+import { PostTopic } from './PostTopic';
+import { Topic } from './Topic';
+import { Author } from './Author';
 
 @Scopes({
   full: {
     include: [
       {
         model: () => Comment,
-        include: [() => Author]
+        include: [ () => Author ]
       },
       {
         model: () => Author

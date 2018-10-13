@@ -6,7 +6,7 @@ import { AuthorFriend } from './AuthorFriend';
 import Book from './Book';
 
 @DefaultScope({
-  attributes: ['id', 'name']
+  attributes: [ 'id', 'name' ]
 })
 @Scopes({
   full: {
