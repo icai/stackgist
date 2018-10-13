@@ -13,13 +13,13 @@ interface ExtConfig extends PowerPartial<EggAppConfig> {
 }
 
 class NC {
-  constructor() {
+  constructor(database, username, password, config) {
     return new Sequelize({
-      name: 'stackgist',
-      dialect: 'mysql',
-      host: 'localhost',
-      username: 'root',
-      password: 'root123456',
+      name: database,
+      username,
+      password,
+      dialect: config.dialect, // support: mysql, mariadb, postgres, mssql
+      host: config.host,
       modelPaths: [ path.resolve(__dirname, '../app/model/') ],
     });
   }

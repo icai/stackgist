@@ -11,7 +11,6 @@ export default class Test extends Service {
    */
   public async sayHi(name: string) {
     const { app } = this;
-    console.info(app);
     //  await Author.create<Author>({name: 'elisa', secret: '3k435kj43'}),
     await app.model.models.Author.create({ name: 'elisa', secret: '3k435kj43' });
     await app.model.models.Author.create({ name: 'nelly' });
