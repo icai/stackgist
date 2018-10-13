@@ -1,9 +1,32 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 
+import { Sequelize } from 'sequelize-typescript';
+
+import * as path from 'path';
+
 // import * as nextjs from '../next.config';
 
+interface ExtConfig extends PowerPartial<EggAppConfig> {
+  keys: any;
+  middleware: any;
+  sequelize: any;
+}
+
+class NC {
+  constructor() {
+    return new Sequelize({
+      name: 'stackgist',
+      dialect: 'mysql',
+      host: 'localhost',
+      username: 'root',
+      password: 'root123456',
+      modelPaths: [ path.resolve(__dirname, '../app/model/') ],
+    });
+  }
+}
+
 export default (appInfo: EggAppInfo) => {
-  const config = {} as PowerPartial<EggAppConfig>;
+  const config = {} as ExtConfig;
 
   // override config from framework / plugin
   // use for cookie sign key, should change to your own and keep security
@@ -19,12 +42,21 @@ export default (appInfo: EggAppInfo) => {
 
   // the return config will combines to EggAppConfig
   return {
-    nextrender: {
-      
+    nextrender: {},
+    sequelize: {
+      Sequelize: NC,
+      dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
+      database: 'stackgist',
+      host: 'localhost',
+      port: '3306',
+      username: 'root',
+      password: 'root123456',
+      // delegate: 'myModel', // load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
+      // baseDir: 'my_model', // load all files in `app/${baseDir}` as models, default to `model`
+      // exclude: 'index.js', // ignore `app/${baseDir}/index.js` when load models, support glob and array
+      // more sequelize options
     },
     ...config,
     ...bizConfig,
-    
-
   };
 };
