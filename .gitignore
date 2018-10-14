@@ -82,3 +82,5 @@ app/**/*.map
 test/**/*.map
 config/**/*.map
 
+!app/models/**/*.js
+

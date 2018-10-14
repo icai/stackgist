@@ -1,8 +1,7 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 
-import { Sequelize } from 'sequelize-typescript';
-
-import * as path from 'path';
+// import { Sequelize } from 'sequelize-typescript';
+// import * as path from 'path';
 
 // import * as nextjs from '../next.config';
 
@@ -12,18 +11,18 @@ interface ExtConfig extends PowerPartial<EggAppConfig> {
   sequelize: any;
 }
 
-class NC {
-  constructor(database, username, password, config) {
-    return new Sequelize({
-      name: database,
-      username,
-      password,
-      dialect: config.dialect, // support: mysql, mariadb, postgres, mssql
-      host: config.host,
-      modelPaths: [ path.resolve(__dirname, '../app/model/') ],
-    });
-  }
-}
+// class NC {
+//   constructor(database, username, password, config) {
+//     return new Sequelize({
+//       name: database,
+//       username,
+//       password,
+//       dialect: config.dialect, // support: mysql, mariadb, postgres, mssql
+//       host: config.host,
+//       modelPaths: [ path.resolve(__dirname, '../app/model/') ],
+//     });
+//   }
+// }
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as ExtConfig;
@@ -44,7 +43,7 @@ export default (appInfo: EggAppInfo) => {
   return {
     nextrender: {},
     sequelize: {
-      Sequelize: NC,
+      // Sequelize: NC,
       dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
       database: 'stackgist',
       host: 'localhost',
@@ -52,11 +51,11 @@ export default (appInfo: EggAppInfo) => {
       username: 'root',
       password: 'root123456',
       // delegate: 'myModel', // load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
-      // baseDir: 'my_model', // load all files in `app/${baseDir}` as models, default to `model`
+      baseDir: 'models' // load all files in `app/${baseDir}` as models, default to `model`
       // exclude: 'index.js', // ignore `app/${baseDir}/index.js` when load models, support glob and array
       // more sequelize options
     },
     ...config,
-    ...bizConfig,
+    ...bizConfig
   };
 };

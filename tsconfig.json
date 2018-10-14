@@ -1,31 +1,41 @@
 {
-    "compileOnSave": true,
-    "compilerOptions": {
+  "compileOnSave": false,
+  "compilerOptions": {
       "target": "es2017",
       "module": "commonjs",
       "strict": true,
       "noImplicitAny": false,
-      "experimentalDecorators": true,
       "emitDecoratorMetadata": true,
       "charset": "utf8",
-      "allowJs": false,
       "pretty": true,
       "noEmitOnError": false,
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
       "allowUnreachableCode": false,
       "allowUnusedLabels": false,
       "strictPropertyInitialization": false,
       "noFallthroughCasesInSwitch": true,
-      "skipLibCheck": true,
       "skipDefaultLibCheck": true,
       "inlineSourceMap": true,
-      "importHelpers": true
-    },
-    "exclude": [
+      "importHelpers": true,
+      "jsx": "preserve",
+      "allowJs": true,
+      "moduleResolution": "node",
+      "experimentalDecorators": true,
+      "allowSyntheticDefaultImports": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "removeComments": false,
+      "preserveConstEnums": true,
+      "sourceMap": true,
+      "skipLibCheck": true,
+      "lib": [
+          "dom",
+          "es2015",
+          "es2016"
+      ]
+  },
+  "exclude": [
       "app/public",
       "app/views",
       "node_modules*"
-    ]
-  }
-  
+  ]
+}
