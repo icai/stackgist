@@ -74,6 +74,7 @@ logs/
 *.lock
 *.js
 !.autod.conf.js
+!tshelper.js
 
 app/**/*.js
 test/**/*.js
