@@ -21,14 +21,14 @@ const conf = withCSS(
 
       config.resolve = config.resolve || {}
 
-      // config.resolve.alias['assets'] = path.resolve('./src/assets')
-      // config.resolve.alias['components'] = path.resolve('./src/components')
-      // config.resolve.alias['ui'] = path.resolve('./src/ui/index')
-      // config.resolve.alias['hoc'] = path.resolve('./src/hoc')
-      // config.resolve.alias['utils'] = path.resolve('./src/utils')
-      // config.resolve.alias['libs'] = path.resolve('./src/libs')
-      // config.resolve.alias['interfaces'] = path.resolve('./src/interfaces')
-      // config.resolve.alias['actions'] = path.resolve('./src/actions')
+      config.resolve.alias['assets'] = path.resolve('./client/assets')
+      config.resolve.alias['components'] = path.resolve('./client/components')
+      config.resolve.alias['ui'] = path.resolve('./client/ui/index')
+      config.resolve.alias['hoc'] = path.resolve('./client/hoc')
+      config.resolve.alias['utils'] = path.resolve('./client/utils')
+      config.resolve.alias['libs'] = path.resolve('./client/libs')
+      config.resolve.alias['interfaces'] = path.resolve('./client/interfaces')
+      config.resolve.alias['actions'] = path.resolve('./client/actions')
 
       // config env variable
       // examle <div>{ process.env.TEST }</div>

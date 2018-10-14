@@ -17,7 +17,7 @@
       "inlineSourceMap": true,
       "importHelpers": true,
       "jsx": "preserve",
-      "allowJs": true,
+      "allowJs": false,
       "moduleResolution": "node",
       "experimentalDecorators": true,
       "allowSyntheticDefaultImports": true,
@@ -27,6 +27,15 @@
       "preserveConstEnums": true,
       "sourceMap": true,
       "skipLibCheck": true,
+      "baseUrl": "./client",
+      "rootDirs":[
+          "./",
+          "../app/",
+          "./client/"
+      ],
+      "paths": {
+        "app/*" : ["../app/*"]
+      },
       "lib": [
           "dom",
           "es2015",

@@ -1,5 +1,5 @@
 import { Service } from 'egg';
-// import { Author } from '../../app/model/Author';
+// import { Author } from 'app/model/Author';
 /**
  * Test Service
  */
@@ -11,10 +11,16 @@ export default class Test extends Service {
    */
   public async sayHi(name: string) {
     const { app } = this;
-    //  await Author.create<Author>({name: 'elisa', secret: '3k435kj43'}),
-    await app.model.models.Author.create({ name: 'elisa', secret: '3k435kj43' });
-    await app.model.models.Author.create({ name: 'nelly' });
-    await app.model.models.Author.create({ name: 'elisa' });
-    return `hi, ${name}`;
+
+    try {
+      await app.model.WpPosts.create({ post_content: 'elisa', post_title: name });
+    } catch (error) {
+      return {
+          error: true,
+          code: 500,
+          data: [],
+          message: '参数不对'
+      };
+    }
   }
 }

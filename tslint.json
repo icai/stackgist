@@ -1,6 +1,8 @@
 {
   "extends": "tslint-config-egg",
   "rules": {
-    "trailing-comma": [true, {"multiline": "never", "singleline": "never"}]
+    "trailing-comma": [true, {"multiline": "never", "singleline": "never"}],
+    "binary-expression-operand-order": false,
+    "no-empty-interface":false
   }
 }

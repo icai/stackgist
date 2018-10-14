@@ -1,4 +1,3 @@
-'use strict';
 import { parse } from 'url';
 
 async function render(app, ctx) {
