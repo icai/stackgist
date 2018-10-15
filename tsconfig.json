@@ -14,7 +14,7 @@
       "strictPropertyInitialization": false,
       "noFallthroughCasesInSwitch": true,
       "skipDefaultLibCheck": true,
-      "inlineSourceMap": true,
+      "inlineSourceMap": false,
       "importHelpers": true,
       "jsx": "preserve",
       "allowJs": false,

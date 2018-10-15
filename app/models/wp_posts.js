@@ -3,6 +3,8 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
+  const Op = DataTypes.Op;
+
   const Model = app.model.define('wp_posts', {
     ID: {
       type: DataTypes.BIGINT,
@@ -120,6 +122,40 @@ module.exports = app => {
   Model.associate = function() {
 
   }
+
+  Modal.getAvailablePostIds = async (offset = 0, limit = 10) => {
+    await Model.findAll({
+      offset,
+      limit,
+      attributes: ['ID'],
+      where: {
+        1: 1,
+        post_type: 'post',
+        [Op.or]: [{
+          post_status: 'publish'
+        },{
+          post_status: 'private'
+        }]
+      },
+      order: [['post_date', 'DESC']]
+    })
+  }
+
+  Modal.getPostsByIds = async (ids) => {
+    await Modal.findAll({
+      where: {
+        ID: {
+          [Op.in]: ids
+        }
+      }
+    })
+  }
+
+  Model.getPosts = async (offset = 0, limit = 10) =>{
+    const ids = await Model.getAvailablePostIds(offset, limit);
+    await Modal.getPostsByIds(ids || []);
+  }
+
 
   return Model;
 };

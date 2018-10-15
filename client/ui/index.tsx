@@ -1,30 +1,28 @@
-import classNames from 'classnames'
-import React from 'react'
+import classNames from 'classnames';
+import React from 'react';
 
 import './index.scss';
 
-export const View = (props)=> {
+export const View = props => {
     const { children, className, ...reset } = props;
     return <div className={className} {...reset}>
         {children}
       </div>;
-}
+};
 
-export const ScrollView = (props) => {
+export const ScrollView = props => {
     const { children, className, ...reset } = props;
     return <div className={className} {...reset}>
         {children}
     </div>;
-}
+};
 
-
-export const Text = (props) => {
+export const Text = props => {
     const { children, className, ...reset } = props;
     return <span className={className} {...reset}>
         {children}
     </span>;
-}
-
+};
 
 interface Imageprops {
     src: string;
@@ -36,10 +34,10 @@ interface Imageprops {
 }
 
 export const Image = ({ className, src, style, mode, onLoad, onError, ...reset }: Imageprops) => {
-    const cls = classNames("taro-img", { "taro-img__widthfix": mode === "widthFix" }, className);
-    const imgCls = "taro-img__mode-" + (mode || "scaleToFill")
+    const cls = classNames('taro-img', { 'taro-img__widthfix': mode === 'widthFix' }, className);
+    const imgCls = 'taro-img__mode-' + (mode || 'scaleToFill')
         .toLowerCase()
-        .replace(/\s/g, "");
+        .replace(/\s/g, '');
 
     return <div className={cls} style={style} {...reset}>
         <img className={imgCls} src={src} onLoad={onLoad} onError={onError} />
