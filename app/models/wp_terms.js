@@ -34,10 +34,10 @@ module.exports = app => {
       name: 'slug'
     }, {
       fields: [{
-        attribute: name,
+        attribute: 'name',
         length: 191
       }],
-      name: name
+      name: 'name'
     }]
   });
 
