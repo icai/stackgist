@@ -22,10 +22,16 @@ module.exports = app => {
       defaultValue: '0'
     }
   }, {
-    tableName: 'wp_term_relationships'
+    tableName: 'wp_term_relationships',
+    indexs: [{
+      fields: [{
+        attribute: 'term_taxonomy_id'
+      }],
+      name: 'term_taxonomy_id'
+    }]
   });
 
-  Model.associate = function() {
+  Model.associate = function () {
 
   }
 

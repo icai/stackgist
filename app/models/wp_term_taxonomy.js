@@ -34,10 +34,24 @@ module.exports = app => {
       defaultValue: '0'
     }
   }, {
-    tableName: 'wp_term_taxonomy'
+    tableName: 'wp_term_taxonomy',
+    indexs: [{
+      fields: [{
+        attribute: 'term_id'
+      }, {
+        attribute: 'taxonomy'
+      }],
+      name: 'term_id_taxonomy',
+      unique: true
+    }, {
+      fields: [{
+        attribute: 'taxonomy'
+      }],
+      name: 'taxonomy'
+    }]
   });
 
-  Model.associate = function() {
+  Model.associate = function () {
 
   }
 

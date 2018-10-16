@@ -78,10 +78,40 @@ module.exports = app => {
       defaultValue: '0'
     }
   }, {
-    tableName: 'wp_comments'
+
+    tableName: 'wp_comments',
+    indexs: [{
+      fields: [{
+        attribute: 'comment_post_ID'
+      }],
+      name: 'comment_post_ID'
+    }, {
+      fields: [{
+        attribute: 'comment_approved'
+      }, {
+        attribute: 'comment_date_gmt'
+      }],
+      name: 'comment_approved_date_gmt'
+    }, {
+      fields: [{
+        attribute: 'comment_date_gmt'
+      }],
+      name: 'comment_date_gmt'
+    }, {
+      fields: [{
+        attribute: 'comment_parent'
+      }],
+      name: 'comment_parent'
+    }, {
+      fields: [{
+        attribute: 'comment_author_email',
+        length: 10
+      }],
+      name: 'comment_author_email'
+    }]
   });
 
-  Model.associate = function() {
+  Model.associate = function () {
 
   }
 

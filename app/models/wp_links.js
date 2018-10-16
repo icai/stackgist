@@ -69,10 +69,16 @@ module.exports = app => {
       defaultValue: ''
     }
   }, {
-    tableName: 'wp_links'
+    tableName: 'wp_links',
+    indexs: [{
+      fields: [{
+        attribute: 'link_visible'
+      }],
+      name: 'link_visible'
+    }]
   });
 
-  Model.associate = function() {
+  Model.associate = function () {
 
   }
 

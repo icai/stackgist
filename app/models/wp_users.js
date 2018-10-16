@@ -55,10 +55,26 @@ module.exports = app => {
       defaultValue: ''
     }
   }, {
-    tableName: 'wp_users'
+    tableName: 'wp_users',
+    indexs: [{
+      fields: [{
+        attribute: 'user_login'
+      }],
+      name: 'user_login_key'
+    }, {
+      fields: [{
+        attribute: 'user_nicename'
+      }],
+      name: 'user_nicename'
+    }, {
+      fields: [{
+        attribute: 'user_email'
+      }],
+      name: 'user_email'
+    }]
   });
 
-  Model.associate = function() {
+  Model.associate = function () {
 
   }
 

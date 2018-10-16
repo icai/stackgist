@@ -25,10 +25,23 @@ module.exports = app => {
       defaultValue: '0'
     }
   }, {
-    tableName: 'wp_terms'
+    tableName: 'wp_terms',
+    indexs: [{
+      fields: [{
+        attribute: 'slug',
+        length: 191
+      }],
+      name: 'slug'
+    }, {
+      fields: [{
+        attribute: name,
+        length: 191
+      }],
+      name: name
+    }]
   });
 
-  Model.associate = function() {
+  Model.associate = function () {
 
   }
 

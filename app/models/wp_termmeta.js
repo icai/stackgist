@@ -23,10 +23,22 @@ module.exports = app => {
       allowNull: true
     }
   }, {
-    tableName: 'wp_termmeta'
+    tableName: 'wp_termmeta',
+    indexs: [{
+      fields: [{
+        attribute: 'term_id'
+      }],
+      name: 'term_id'
+    }, {
+      fields: [{
+        attribute: 'meta_key',
+        length: 191
+      }],
+      name: 'meta_key'
+    }]
   });
 
-  Model.associate = function() {
+  Model.associate = function () {
 
   }
 

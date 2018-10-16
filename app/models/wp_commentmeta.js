@@ -23,10 +23,22 @@ module.exports = app => {
       allowNull: true
     }
   }, {
-    tableName: 'wp_commentmeta'
+    tableName: 'wp_commentmeta',
+    indexs: [{
+      fields: [{
+        attribute: 'comment_id'
+      }],
+      name: 'comment_id'
+    }, {
+      fields: [{
+        attribute: 'meta_key',
+        length: 191
+      }],
+      name: 'meta_key'
+    }]
   });
 
-  Model.associate = function() {
+  Model.associate = function () {
 
   }
 

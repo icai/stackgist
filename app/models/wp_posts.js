@@ -9,7 +9,8 @@ module.exports = app => {
     ID: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     post_author: {
       type: DataTypes.BIGINT,
@@ -116,7 +117,36 @@ module.exports = app => {
       defaultValue: '0'
     }
   }, {
-    tableName: 'wp_posts'
+    tableName: 'wp_posts',
+    indexs: [{
+      fields: [{
+        attribute: 'post_name',
+        length: 191
+      }],
+      name: 'post_name'
+    }, {
+      fields: [{
+        attribute: 'post_type'
+      }, {
+        attribute: 'post_status'
+      }, {
+        attribute: 'post_date'
+      }, {
+        attribute: 'ID'
+      }],
+      name: 'type_status_date'
+    }, {
+      fields: [{
+        attribute: 'post_parent'
+      }],
+      name: 'post_parent'
+    }, {
+      fields: [{
+        attribute: 'post_author'
+      }],
+      name: 'post_author'
+    }]
+
   });
 
   Model.associate = function() {

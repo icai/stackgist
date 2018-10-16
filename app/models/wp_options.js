@@ -25,10 +25,17 @@ module.exports = app => {
       defaultValue: 'yes'
     }
   }, {
-    tableName: 'wp_options'
+    tableName: 'wp_options',
+    indexs: [{
+      fields: [{
+        attribute: 'option_name'
+      }],
+      name: 'option_name',
+      unique: true
+    }]
   });
 
-  Model.associate = function() {
+  Model.associate = function () {
 
   }
 
