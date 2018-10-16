@@ -26,7 +26,7 @@ module.exports = app => {
     }
   }, {
     tableName: 'wp_terms',
-    indexs: [{
+    indexes: [{
       fields: [{
         attribute: 'slug',
         length: 191

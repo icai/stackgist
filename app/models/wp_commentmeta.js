@@ -24,7 +24,7 @@ module.exports = app => {
     }
   }, {
     tableName: 'wp_commentmeta',
-    indexs: [{
+    indexes: [{
       fields: [{
         attribute: 'comment_id'
       }],

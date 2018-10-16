@@ -23,7 +23,7 @@ module.exports = app => {
     }
   }, {
     tableName: 'wp_term_relationships',
-    indexs: [{
+    indexes: [{
       fields: [{
         attribute: 'term_taxonomy_id'
       }],

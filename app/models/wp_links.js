@@ -70,7 +70,7 @@ module.exports = app => {
     }
   }, {
     tableName: 'wp_links',
-    indexs: [{
+    indexes: [{
       fields: [{
         attribute: 'link_visible'
       }],

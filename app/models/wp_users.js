@@ -56,7 +56,7 @@ module.exports = app => {
     }
   }, {
     tableName: 'wp_users',
-    indexs: [{
+    indexes: [{
       fields: [{
         attribute: 'user_login'
       }],

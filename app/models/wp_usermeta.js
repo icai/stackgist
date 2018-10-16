@@ -24,7 +24,7 @@ module.exports = app => {
     }
   }, {
     tableName: 'wp_usermeta',
-    indexs: [{
+    indexes: [{
       fields: [{
         attribute: 'user_id'
       }],

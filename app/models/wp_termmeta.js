@@ -24,7 +24,7 @@ module.exports = app => {
     }
   }, {
     tableName: 'wp_termmeta',
-    indexs: [{
+    indexes: [{
       fields: [{
         attribute: 'term_id'
       }],

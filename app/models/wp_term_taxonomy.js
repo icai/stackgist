@@ -35,7 +35,7 @@ module.exports = app => {
     }
   }, {
     tableName: 'wp_term_taxonomy',
-    indexs: [{
+    indexes: [{
       fields: [{
         attribute: 'term_id'
       }, {

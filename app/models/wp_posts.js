@@ -1,5 +1,7 @@
 /* indent size: 2 */
 
+const _ = require('lodash');
+
 module.exports = app => {
   const DataTypes = app.Sequelize;
 
@@ -118,7 +120,8 @@ module.exports = app => {
     }
   }, {
     tableName: 'wp_posts',
-    indexs: [{
+    timestamps: false,
+    indexes: [{
       fields: [{
         attribute: 'post_name',
         length: 191
@@ -154,12 +157,12 @@ module.exports = app => {
   }
 
   Model.getAvailablePostIds = async (offset = 0, limit = 10) => {
-    await Model.findAll({
+    return await Model.findAll({
       offset,
       limit,
       attributes: ['ID'],
       where: {
-        1: 1,
+        // 1: 1,
         post_type: 'post',
         [Op.or]: [{
           post_status: 'publish'
@@ -167,23 +170,26 @@ module.exports = app => {
           post_status: 'private'
         }]
       },
+      raw : true,
       order: [['post_date', 'DESC']]
     })
   }
 
   Model.getPostsByIds = async (ids) => {
-    await Model.findAll({
+    return await Model.findAll({
       where: {
         ID: {
           [Op.in]: ids
         }
-      }
+      },
+      raw : true
     })
   }
 
   Model.getPosts = async (offset = 0, limit = 10) =>{
-    const ids = await Model.getAvailablePostIds(offset, limit);
-    await Model.getPostsByIds(ids || []);
+    const idsobj = await Model.getAvailablePostIds(offset, limit);
+    const ids = _.map(idsobj, 'ID');
+    return await Model.getPostsByIds(ids || []);
   }
 
 

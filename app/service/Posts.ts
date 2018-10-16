@@ -10,7 +10,7 @@ export default class Posts extends Service {
   public async list() {
     const { app } = this;
     try {
-      await app.model.WpPosts.getPosts();
+      return await app.model.WpPosts.getPosts();
     } catch (error) {
       return {
           error: true,

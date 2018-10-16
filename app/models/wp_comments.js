@@ -80,7 +80,7 @@ module.exports = app => {
   }, {
 
     tableName: 'wp_comments',
-    indexs: [{
+    indexes: [{
       fields: [{
         attribute: 'comment_post_ID'
       }],

@@ -26,7 +26,7 @@ module.exports = app => {
     }
   }, {
     tableName: 'wp_options',
-    indexs: [{
+    indexes: [{
       fields: [{
         attribute: 'option_name'
       }],

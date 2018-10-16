@@ -24,7 +24,7 @@ module.exports = app => {
     }
   }, {
     tableName: 'wp_postmeta',
-    indexs: [{
+    indexes: [{
       fields: [{
         attribute: 'post_id'
       }],
