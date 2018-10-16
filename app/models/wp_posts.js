@@ -153,7 +153,7 @@ module.exports = app => {
 
   }
 
-  Modal.getAvailablePostIds = async (offset = 0, limit = 10) => {
+  Model.getAvailablePostIds = async (offset = 0, limit = 10) => {
     await Model.findAll({
       offset,
       limit,
@@ -171,8 +171,8 @@ module.exports = app => {
     })
   }
 
-  Modal.getPostsByIds = async (ids) => {
-    await Modal.findAll({
+  Model.getPostsByIds = async (ids) => {
+    await Model.findAll({
       where: {
         ID: {
           [Op.in]: ids
@@ -183,7 +183,7 @@ module.exports = app => {
 
   Model.getPosts = async (offset = 0, limit = 10) =>{
     const ids = await Model.getAvailablePostIds(offset, limit);
-    await Modal.getPostsByIds(ids || []);
+    await Model.getPostsByIds(ids || []);
   }
 
 
