@@ -39,6 +39,14 @@ export default (appInfo: EggAppInfo) => {
       // exclude: 'index.js', // ignore `app/${baseDir}/index.js` when load models, support glob and array
       // more sequelize options
     },
+    redis: {
+      client: {
+        port: 6379,          // Redis port
+        host: '127.0.0.1',   // Redis host
+        password: 'root123456',
+        db: 0
+      }
+    },
     ...PrivateConif,
     ...config,
     ...bizConfig

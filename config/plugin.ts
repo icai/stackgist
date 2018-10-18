@@ -29,4 +29,9 @@ plugin.passportWeibo = {
   package: 'egg-passport-weibo'
 };
 
+plugin.redis = {
+  enable: true,
+  package: 'egg-redis'
+};
+
 export default plugin;

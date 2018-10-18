@@ -1,11 +1,12 @@
 import { Application } from 'egg';
 
-import oauth from 'oauth';
+import oauth from './app/oauth';
 
 declare module 'egg' {
   // extend app
   interface Application {
     passport: any;
+    redis: any;
   }
 }
 export default (app: Application) => {
