@@ -7,7 +7,7 @@ stackgist
 
 ## Tech Stack
 
-egg(koa) + next.js + wordpress(ddl) + ant-design
+egg + next.js + wordpress(ddl) + ant-design
 
 
 

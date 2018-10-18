@@ -1,7 +1,5 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
-
-// import { Sequelize } from 'sequelize-typescript';
-// import * as path from 'path';
+import PrivateConif from '../private/config';
 
 // import * as nextjs from '../next.config';
 
@@ -10,19 +8,6 @@ interface ExtConfig extends PowerPartial<EggAppConfig> {
   middleware: any;
   sequelize: any;
 }
-
-// class NC {
-//   constructor(database, username, password, config) {
-//     return new Sequelize({
-//       name: database,
-//       username,
-//       password,
-//       dialect: config.dialect, // support: mysql, mariadb, postgres, mssql
-//       host: config.host,
-//       modelPaths: [ path.resolve(__dirname, '../app/model/') ],
-//     });
-//   }
-// }
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as ExtConfig;
@@ -55,6 +40,7 @@ export default (appInfo: EggAppInfo) => {
       // exclude: 'index.js', // ignore `app/${baseDir}/index.js` when load models, support glob and array
       // more sequelize options
     },
+    ...PrivateConif,
     ...config,
     ...bizConfig
   };

@@ -8,8 +8,25 @@ const plugin: EggPlugin = {
   // },
   sequelize: {
     enable: true,
-    package: 'egg-sequelize',
-  },
+    package: 'egg-sequelize'
+  }
+};
+plugin.passport = {
+  enable: true,
+  package: 'egg-passport'
+};
+plugin.passportLocal = {
+  enable: true,
+  package: 'egg-passport-local'
+};
+plugin.passportGithub = {
+  enable: true,
+  package: 'egg-passport-github'
+};
+
+plugin.passportWeibo = {
+  enable: true,
+  package: 'egg-passport-weibo'
 };
 
 export default plugin;
