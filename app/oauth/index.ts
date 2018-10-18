@@ -13,7 +13,7 @@ const instance = {
 };
 
 export default app => {
-  app.passport.verify(function* (_ctx, user) {
+  app.passport.verify(function* (_ctx, user, _done) {
     const provider = user.provider;
     if (provider && instance[provider]) {
       instance[provider].start(user);
@@ -32,7 +32,7 @@ export default app => {
     // }
     return user;
   });
-
+  // https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
   app.passport.serializeUser(function* (ctx, user) {
     user.currentUrl = ctx.url;
     return user;

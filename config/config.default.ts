@@ -28,7 +28,6 @@ export default (appInfo: EggAppInfo) => {
   return {
     nextrender: {},
     sequelize: {
-      // Sequelize: NC,
       dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
       database: 'stackgist',
       host: 'localhost',
