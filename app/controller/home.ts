@@ -20,4 +20,8 @@ export default class HomeController extends Controller {
     `;
     }
   }
+
+  public async nextRender() {
+    await this.ctx.render('/next');
+  }
 }

@@ -1,5 +1,6 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 import PrivateConif from '../private/config';
+import * as path from 'path';
 
 // import * as nextjs from '../next.config';
 
@@ -23,10 +24,23 @@ export default (appInfo: EggAppInfo) => {
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
   };
+  const root = [
+    // path.join(appInfo.baseDir, 'app/view'),
+    path.join(appInfo.baseDir, 'client/pages')
+  ];
 
+  const view = {
+    root: root.join(','),
+    defaultExtension: '.tsx',
+    mapping: {
+      '.tsx': 'nextview',
+      '.jsx': 'nextview'
+    }
+  };
   // the return config will combines to EggAppConfig
   return {
-    nextrender: {},
+    view,
+    nextview: {},
     sequelize: {
       dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
       database: 'stackgist',

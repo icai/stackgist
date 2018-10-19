@@ -1,0 +1,6 @@
+{
+    "name": "egg-view-nextjs",
+    "eggPlugin": {
+        "name": "nextview"
+    }
+}

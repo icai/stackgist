@@ -20,7 +20,6 @@ export default (options, app) => {
         if (ctx.status !== 404 || ctx.method !== 'GET') {
           return;
         }
-        await render(app, ctx);
       }
     }
   };

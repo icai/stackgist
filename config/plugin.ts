@@ -1,4 +1,5 @@
 import { EggPlugin } from 'egg';
+import * as path from 'path';
 
 const plugin: EggPlugin = {
   // static: true,
@@ -32,6 +33,11 @@ plugin.passportWeibo = {
 plugin.redis = {
   enable: true,
   package: 'egg-redis'
+};
+
+plugin.nextview = {
+  enable: true,
+  path: path.join(__dirname, '../lib/plugins/egg-view-nextjs')
 };
 
 export default plugin;

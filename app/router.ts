@@ -8,6 +8,8 @@ export default (app: Application) => {
   router.get('/', controller.home.index);
   router.get('/user', controller.home.index);
 
+  router.get('/nextrender', controller.home.nextRender);
+
   const weiboAuth = app.passport.authenticate('weibo');
   router.get('/passport/weibo', weiboAuth);
   router.get('/passport/weibo/callback', weiboAuth);

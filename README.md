@@ -7,7 +7,7 @@ stackgist
 
 ## Tech Stack
 
-egg + next.js + wordpress(ddl) + ant-design
+egg + next.js + wordpress(ddl)
 
 
 
@@ -15,15 +15,15 @@ egg + next.js + wordpress(ddl) + ant-design
 
 - [x] 整合egg，next.js 
 - [x] 整合wordpress ddl，初始化sequelize
-- [ ] 后端中间件处理
-- [ ] 后端 curd 逻辑
-- [ ] 前端界面
-- [ ] 后台构建（ant-design）
+- [ ] 用户管理模块
+- [ ] 后台搭建
+- [ ] 系统信息配置模块
+- [ ] 其他扩展功能
 
 
 ## Reference
 
-
+- https://github.com/eggjs/egg/tree/master/test/fixtures/apps
 - https://github.com/cnodejs/egg-cnode
 - https://github.com/hezhongfeng/Koa2-Blog 
 - https://codex.wordpress.org/Database_Description
