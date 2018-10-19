@@ -40,7 +40,9 @@ export default (appInfo: EggAppInfo) => {
   // the return config will combines to EggAppConfig
   return {
     view,
-    nextview: {},
+    nextview: {
+      dir: './client'
+    },
     sequelize: {
       dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
       database: 'stackgist',

@@ -7,13 +7,13 @@ export default class NextView {
     this.ctx = ctx;
     this.app = ctx.app;
     this.viewConfig = ctx.app.config.view;
-    this.config = ctx.app.config.nextview;
+    // this.config = ctx.app.config.nextview;
   }
   async render(path) {
     const name = resolveName(path, this.viewConfig);
     const ctx = this.ctx;
+    await ctx.app.next.render(ctx.req, ctx.res, name, ctx.query);
     ctx.respond = false;
-    return await ctx.app.next.render(ctx.req, ctx.res, name, ctx.query);
   }
   // don't support renderString
   async renderString(tpl) {
