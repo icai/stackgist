@@ -49,10 +49,13 @@
   },
   "homepage": "https://github.com/icai/stackgist#readme",
   "dependencies": {
+    "antd": "^3.10.1",
     "axios": "^0.18.0",
+    "babel-plugin-import": "^1.10.0",
     "classnames": "^2.2.6",
     "css-loader": "^1.0.0",
     "dotenv-webpack": "^1.5.7",
+    "dva-no-router": "^1.2.0",
     "egg": "^2.6.1",
     "egg-passport": "^2.0.1",
     "egg-passport-github": "^1.0.0",
@@ -125,6 +128,9 @@
     "tslib": "^1.9.0",
     "tslint": "^5.11.0",
     "tslint-config-egg": "^1.0.0-alpha.3",
+    "tslint-config-prettier": "^1.15.0",
+    "tslint-eslint-rules": "^5.4.0",
+    "tslint-react": "^3.6.0",
     "typescript": "^3.0.3"
   }
 }

@@ -1,5 +1,7 @@
 import { Application } from 'egg';
 
+import admin from './router/admin'
+
 export default (app: Application) => {
   const { controller, router } = app;
 
@@ -30,4 +32,5 @@ export default (app: Application) => {
   // router.get('/passport/localapikey', app.passport.authenticate('localapikey'));
   router.get('/logout', 'user.logout');
 
+  admin(app);
 };

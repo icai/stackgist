@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 import { ScrollView } from 'ui';
 import Header from 'components/header';
-import Layout from 'components/layout';
+import Layout from 'layout';
 
-// import './index.scss';
+
 
 class About extends Component {
   render () {

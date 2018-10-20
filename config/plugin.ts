@@ -40,4 +40,9 @@ plugin.nextview = {
   path: path.join(__dirname, '../lib/plugins/egg-view-nextjs')
 };
 
+plugin.routerPlus = {
+  enable: true,
+  package: 'egg-router-plus'
+};
+
 export default plugin;

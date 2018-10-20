@@ -27,5 +27,5 @@ function resolveName(path, config) {
     path = path.replace(dir, '');
   }
   // remove subfix
-  return path.replace(/\.\w+$/, '');
+  return path.replace(/(\/index)?\.\w+$/, '');
 }
