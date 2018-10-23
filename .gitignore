@@ -84,5 +84,6 @@ test/**/*.map
 config/**/*.map
 private/config.ts
 
-!app/models/**/*.js
+!app/model/**/*.js
+!client/**/*.js
 
