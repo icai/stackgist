@@ -85,5 +85,7 @@ config/**/*.map
 private/config.ts
 
 !app/model/**/*.js
+!app/functions/**/*.js
+!app/mock/**/*.js
 !client/**/*.js
 

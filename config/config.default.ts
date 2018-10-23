@@ -18,7 +18,7 @@ export default (appInfo: EggAppInfo) => {
   config.keys = appInfo.name + '_1539094118788_6042';
 
   // add your egg config in here
-  config.middleware = ['errorPage'];
+  config.middleware = ['mockData', 'errorPage'];
 
   // add your special config in here
   const bizConfig = {
