@@ -17,7 +17,7 @@
       "inlineSourceMap": false,
       "importHelpers": true,
       "jsx": "preserve",
-      "allowJs": false,
+      "allowJs": true,
       "moduleResolution": "node",
       "experimentalDecorators": true,
       "allowSyntheticDefaultImports": true,
@@ -27,14 +27,13 @@
       "preserveConstEnums": true,
       "sourceMap": true,
       "skipLibCheck": true,
-      "baseUrl": "./client",
+      "baseUrl": ".",
       "rootDirs":[
           "./",
-          "../app/",
-          "./client/"
+          "./app/"
       ],
       "paths": {
-        "app/*" : ["../app/*"]
+        "app/*" : ["./app/*"]
       },
       "lib": [
           "dom",

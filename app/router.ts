@@ -7,10 +7,12 @@ export default (app: Application) => {
 
   // router.get('/home', controller.home.index);
 
-  router.get('/', controller.home.index);
+  router.get('/', controller.dashboard.analysis);
   router.get('/user', controller.home.index);
 
-  router.get('/nextrender', controller.home.nextRender);
+  router.get('/user/login', controller.user.login);
+  router.get('/user/register', controller.user.register);
+  router.get('/nextrender', controller.home.next);
 
   const weiboAuth = app.passport.authenticate('weibo');
   router.get('/passport/weibo', weiboAuth);

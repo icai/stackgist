@@ -18,7 +18,7 @@ export default (appInfo: EggAppInfo) => {
   config.keys = appInfo.name + '_1539094118788_6042';
 
   // add your egg config in here
-  config.middleware = [];
+  config.middleware = ['errorPage'];
 
   // add your special config in here
   const bizConfig = {
@@ -34,7 +34,9 @@ export default (appInfo: EggAppInfo) => {
     defaultExtension: '.tsx',
     mapping: {
       '.tsx': 'nextview',
-      '.jsx': 'nextview'
+      '.jsx': 'nextview',
+      '.js': 'nextview',
+      '.ts': 'nextview'
     }
   };
   // the return config will combines to EggAppConfig
@@ -49,9 +51,9 @@ export default (appInfo: EggAppInfo) => {
       host: 'localhost',
       port: '3306',
       username: 'root',
-      password: 'root123456',
+      password: 'root123456'
       // delegate: 'myModel', // load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
-      baseDir: 'models' // load all files in `app/${baseDir}` as models, default to `model`
+      // baseDir: 'model' // load all files in `app/${baseDir}` as models, default to `model`
       // exclude: 'index.js', // ignore `app/${baseDir}/index.js` when load models, support glob and array
       // more sequelize options
     },

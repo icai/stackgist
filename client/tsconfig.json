@@ -1,0 +1,47 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+      "target": "es2017",
+      "module": "commonjs",
+      "strict": true,
+      "noImplicitAny": false,
+      "emitDecoratorMetadata": true,
+      "charset": "utf8",
+      "pretty": true,
+      "noEmitOnError": false,
+      "allowUnreachableCode": false,
+      "allowUnusedLabels": false,
+      "strictPropertyInitialization": false,
+      "noFallthroughCasesInSwitch": true,
+      "skipDefaultLibCheck": true,
+      "inlineSourceMap": false,
+      "importHelpers": true,
+      "jsx": "preserve",
+      "allowJs": true,
+      "moduleResolution": "node",
+      "experimentalDecorators": true,
+      "allowSyntheticDefaultImports": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "removeComments": false,
+      "preserveConstEnums": true,
+      "sourceMap": true,
+      "skipLibCheck": true,
+      "baseUrl": ".",
+      "rootDirs":[
+          "./",
+          "../app/",
+      ],
+      "paths": {
+        "app/*" : ["../app/*"],
+        "@/*" : ["./*"],
+        "umi/*": ["./umi/*"],
+        "locales/*": ["./locales/*"]
+      },
+      "lib": [
+          "dom",
+          "es2015",
+          "es2016"
+      ]
+  }
+}

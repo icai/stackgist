@@ -5,10 +5,12 @@
     ],
     "plugins": [
         ["@babel/plugin-proposal-decorators", {
-            "decoratorsBeforeExport": true
+            "legacy": true
         }],
-        ["@babel/plugin-proposal-class-properties"],
+        ["@babel/plugin-proposal-class-properties", {
+            "loose": true
+        }],
         ["@babel/plugin-proposal-object-rest-spread"],
-        ["import", { "libraryName": "antd", "style": false }]
+        ["import", {  "libraryName": "antd", "style": false }]
     ]
 }

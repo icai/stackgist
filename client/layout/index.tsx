@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { View } from 'ui';
 import Head from 'next/head';
 
+import 'assets/antd.less';
 export default class Layout extends Component<{
   className?: string;
   title?: string;

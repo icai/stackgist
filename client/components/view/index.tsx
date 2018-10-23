@@ -7,6 +7,8 @@ class View extends React.Component<
     onSSR?;
     canRender?;
     className?;
+    style?;
+    onClick?;
   },
   {
     canRender;
@@ -14,9 +16,15 @@ class View extends React.Component<
 > {
   constructor(props) {
     super(props);
-    this.state = {
-      canRender: props.canRender || true
-    };
+    if(typeof props.canRender !== 'undefined') {
+      this.state = {
+        canRender: props.canRender
+      };
+    } else {
+      this.state = {
+        canRender: true
+      };
+    }
   }
 
   componentDidMount() {

@@ -7,7 +7,7 @@ stackgist
 
 ## Tech Stack
 
-egg + next.js + wordpress(ddl)
+egg + next.js + wordpress(ddl) + redux-saga(dva) + ant-design
 
 
 

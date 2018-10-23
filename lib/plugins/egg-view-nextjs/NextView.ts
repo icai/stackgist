@@ -10,8 +10,9 @@ export default class NextView {
     // this.config = ctx.app.config.nextview;
   }
   async render(path) {
-    const name = resolveName(path, this.viewConfig);
+    const name = resolveName(path, this.viewConfig) || '/';
     const ctx = this.ctx;
+    ctx.status = 200;
     await ctx.app.next.render(ctx.req, ctx.res, name, ctx.query);
     ctx.respond = false;
   }
@@ -21,11 +22,13 @@ export default class NextView {
   }
 }
 
+// match normalizePagePath path
+// https://github.com/zeit/next.js/blob/canary/packages/next-server/server/require.js
 function resolveName(path, config) {
   const root = config.root;
   for (const dir of root) {
     path = path.replace(dir, '');
   }
   // remove subfix
-  return path.replace(/(\/index)?\.\w+$/, '');
+  return path.replace(/(\/?index)?\.\w+$/, '');
 }

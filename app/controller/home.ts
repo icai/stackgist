@@ -6,22 +6,11 @@ export default class HomeController extends Controller {
     if (ctx.isAuthenticated()) {
       ctx.body = await ctx.service.posts.list();
     } else {
-      ctx.session.returnTo = ctx.path;
-      ctx.body = `
-      <div>
-        <h2>${ctx.path}</h2>
-        <hr>
-        Login with
-        <a href="/passport/weibo">Weibo</a> | <a href="/passport/github">Github</a> |
-        <a href="/passport/bitbucket">Bitbucket</a> | <a href="/passport/twitter">Twitter</a>
-        <hr>
-        <a href="/">Home</a> | <a href="/user">User</a>
-      </div>
-    `;
+      await this.ctx.render('/index');
     }
   }
 
-  public async nextRender() {
+  public async next() {
     await this.ctx.render('/next');
   }
 }
