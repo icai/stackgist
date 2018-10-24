@@ -10,4 +10,12 @@ export default class User extends Service {
   public async find() {
     return this.ctx.user;
   }
+
+  public async getUserByGithubId(id) {
+
+  }
+
+  public async createUserByGithubInfo(user) {
+
+  }
 }

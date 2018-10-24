@@ -138,7 +138,7 @@ class LoginPage extends Component {
             </Submit>
             <div className={styles.other}>
               <FormattedMessage id="app.login.sign-in-with" />
-              <Icon
+              {/* <Icon
                 type="alipay-circle"
                 className={styles.icon}
                 theme="outlined"
@@ -147,12 +147,18 @@ class LoginPage extends Component {
                 type="taobao-circle"
                 className={styles.icon}
                 theme="outlined"
-              />
-              <Icon
-                type="weibo-circle"
-                className={styles.icon}
-                theme="outlined"
-              />
+              /> */}
+              <a href="/passport/weibo"> 
+                <Icon
+                  type="weibo-circle"
+                  className={styles.icon}
+                  theme="outlined"
+                />
+              </a>
+              <a href="/passport/github">
+                <Icon type="github" className={styles.icon} theme="outlined" />
+              </a> 
+              
               <Link className={styles.register} to="/User/Register">
                 <FormattedMessage id="app.login.signup" />
               </Link>

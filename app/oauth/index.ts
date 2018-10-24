@@ -13,24 +13,17 @@ const instance = {
 };
 
 export default app => {
-  app.passport.verify(function* (_ctx, user, _done) {
+  app.passport.verify(async (ctx, user, done) => {
     const provider = user.provider;
     if (provider && instance[provider]) {
-      instance[provider].start(user);
+      user = await instance[provider].start.call(ctx, ctx, user);
     }
-    // if (user.provider === 'local') {
-    //   if (user.apikey === 'eggapp') {
-    //     user.name = 'eggapp';
-    //     user.displayName = 'my name is egg';
-    //     user.photo = 'https://zos.alipayobjects.com/rmsportal/JFKAMfmPehWfhBPdCjrw.svg';
-    //     user.profile = {
-    //       _json: user
-    //     };
-    //   } else {
-    //     return null;
-    //   }
-    // }
-    return user;
+    done(null, user);
+    if(user.isNew) {
+      ctx.redirect('/user/fullinfo');
+    } else {
+      ctx.redirect('/');
+    }
   });
   // https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
   app.passport.serializeUser(function* (ctx, user) {
