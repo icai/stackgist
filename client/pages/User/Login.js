@@ -87,10 +87,6 @@ class LoginPage extends Component {
               this.loginForm = form;
             }}
           >
-            <Tab
-              key="account"
-              tab={formatMessage({ id: 'app.login.tab-login-credentials' })}
-            >
               {login.status === 'error' &&
                 login.type === 'account' &&
                 !submitting &&
@@ -105,26 +101,6 @@ class LoginPage extends Component {
                   this.loginForm.validateFields(this.handleSubmit)
                 }
               />
-            </Tab>
-            <Tab
-              key="mobile"
-              tab={formatMessage({ id: 'app.login.tab-login-mobile' })}
-            >
-              {login.status === 'error' &&
-                login.type === 'mobile' &&
-                !submitting &&
-                this.renderMessage(
-                  formatMessage({
-                    id: 'app.login.message-invalid-verification-code'
-                  })
-                )}
-              <Mobile name="mobile" />
-              <Captcha
-                name="captcha"
-                countDown={120}
-                onGetCaptcha={this.onGetCaptcha}
-              />
-            </Tab>
             <div>
               <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>
                 <FormattedMessage id="app.login.remember-me" />
@@ -138,16 +114,6 @@ class LoginPage extends Component {
             </Submit>
             <div className={styles.other}>
               <FormattedMessage id="app.login.sign-in-with" />
-              {/* <Icon
-                type="alipay-circle"
-                className={styles.icon}
-                theme="outlined"
-              />
-              <Icon
-                type="taobao-circle"
-                className={styles.icon}
-                theme="outlined"
-              /> */}
               <a href="/passport/weibo"> 
                 <Icon
                   type="weibo-circle"
