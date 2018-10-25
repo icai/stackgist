@@ -6,11 +6,10 @@ import Layout from 'layout';
 
 class Index extends Component<{
   user;
-  store;
 }> {
-  static async getInitialProps(props) {
+  static async getInitialProps({ctx}) {
     return {
-      user: props.req.user
+      user: ctx.req.user
     }
   }
   render () {
