@@ -1,4 +1,6 @@
 import { Service } from 'egg';
+import { nowISO } from '../utils/datetime';
+import { randomString } from '../utils/random';
 /**
  * User Service
  */
@@ -106,15 +108,16 @@ export default class User extends Service {
       }
     });
     if (!sysuser) {
+      const pass = randomString(12);
       // 创建主表
       sysuser = await WpUsers.create(
         {
           user_login: email,
-          user_pass: '111111',
+          user_pass: pass,
           user_nicename: profile.name,
           user_email: email,
           user_url: profile.profileUrl,
-          user_registered: '2018-10-14 10:29:00',
+          user_registered: nowISO(),
           display_name: profile.displayName
         },
         { isNewRecord: true }
