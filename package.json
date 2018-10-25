@@ -5,6 +5,8 @@
   "description": "stackgist",
   "main": "index.js",
   "scripts": {
+    "mgc": "sequelize migration:generate --name test",
+    "mgdb": "sequelize db:migrate",
     "start": "egg-scripts start --daemon --title=egg-server-stackgist",
     "stop": "egg-scripts stop --title=egg-server-stackgist",
     "dev": "egg-bin dev -r egg-ts-helper/register",
@@ -108,6 +110,7 @@
     "reflect-metadata": "^0.1.12",
     "sass-loader": "^7.1.0",
     "sequelize": "^5.0.0-beta.12",
+    "sequelize-cli": "^5.2.0",
     "sequelize-typescript": "^0.6.7-beta.0",
     "throttle-debounce": "^2.0.1",
     "timeago.js": "^4.0.0-beta.1",
