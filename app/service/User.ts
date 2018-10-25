@@ -17,23 +17,15 @@ export default class User extends Service {
     // on user.ID = github.user_id
     // where github.id = 1 LIMIT 1;
     const { WpUsers, WpOauthGithub } = app.model;
-
-    // ?? inner join 变成  LEFT OUTER JOIN 了？
-
-    // SELECT `wp_users`.`id`, `wp_users`.`user_login`, `wp_users`.`user_pass`, `wp_users`.`user_nicename`, `wp_users`.`user_email`, `wp_users`.`user_url`, `wp_users`.`user_registered`, `wp_users`.`user_activation_key`, `wp_users`.`user_status`, `wp_users`.`display_name`, `wp_users`.`created_at`, `wp_users`.`updated_at` FROM `wp_users` AS `wp_users`
-    // LEFT OUTER JOIN `wp_oauth_github` AS `wp_oauth_github`
-    // ON `wp_users`.`id` = `wp_oauth_github`.`user_id`
-    // WHERE `wp_oauth_github`.`id` = '1061012' LIMIT 1;
-
     return await WpUsers.findOne({
-      where: {
-        '$wp_oauth_github.id$': id
-      },
       include: [
         {
           attributes: [],
           model: WpOauthGithub,
-          require: true
+          require: true,
+          where: {
+            id
+          }
         }
       ],
       raw: true
