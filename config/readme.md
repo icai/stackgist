@@ -5,8 +5,9 @@
 https://github.com/eggjs/egg/issues/1865
 
 
-
 http://docs.sequelizejs.com/manual/tutorial/migrations.html
+
+> Markdown file copy in http://markdown.w3cub.com
 
 
 # Migrations
