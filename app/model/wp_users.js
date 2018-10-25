@@ -4,10 +4,11 @@ module.exports = app => {
   const DataTypes = app.Sequelize;
 
   const Model = app.model.define('wp_users', {
-    ID: {
+    id: {
       type: DataTypes.BIGINT,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     user_login: {
       type: DataTypes.STRING(60),
@@ -74,8 +75,8 @@ module.exports = app => {
     }]
   });
 
-  Model.associate = function () {
-
+  Model.associate = function (models) {
+    Model.hasOne(app.model.WpOauthGithub, { foreignKey: 'user_id' })
   }
 
   return Model;

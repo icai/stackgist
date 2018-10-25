@@ -72,18 +72,23 @@ if (typeof window !== 'undefined' && window.ReactIntlLocaleData) {
 
 
 class MyApp extends App {
-  static async getInitialProps({ Component, router, ctx }) {
+  static async getInitialProps(props) {
+    const { Component, router, ctx, store } = props;
     let pageProps = {};
-    
-
     if (Component.getInitialProps) {
       pageProps = await Component.getInitialProps(ctx);
     }
 
     // Get the `locale` and `messages` from the request object on the server.
     // In the browser, use the same values that the server serialized.
-    const { req } = ctx;
+    const { req, isServer } = ctx;
     const { locale, messages } = req || window.__NEXT_DATA__.props;
+    if(isServer) {
+      pageProps.ctx = req.ctx;
+    }
+    // inject for pages
+    pageProps.store = store;
+    pageProps.isServer = isServer;
     return { pageProps, locale, messages };
   }
 

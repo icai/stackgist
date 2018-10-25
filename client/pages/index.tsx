@@ -4,8 +4,17 @@ import React, { Component } from 'react';
 import Footer from 'layout/Footer';
 import Layout from 'layout';
 
-class Index extends Component {
+class Index extends Component<{
+  user;
+  store;
+}> {
+  static async getInitialProps(props) {
+    return {
+      user: props.req.user
+    }
+  }
   render () {
+    const user = this.props.user
     return (
       <Layout>
         <div>
@@ -14,6 +23,7 @@ class Index extends Component {
             <a href="/passport/bitbucket">Bitbucket</a> | <a href="/passport/twitter">Twitter</a>
             <hr />
             <a href="/">Home</a> | <a href="/user">User</a>
+            {JSON.stringify(user)}
         </div>
         <Footer></Footer>
       </Layout>

@@ -7,7 +7,7 @@ export default (app: Application) => {
 
   // router.get('/home', controller.home.index);
 
-  router.get('/', controller.dashboard.analysis);
+  router.get('/', controller.home.index);
   router.get('/user', controller.home.index);
 
   router.get('/user/login', controller.user.login);

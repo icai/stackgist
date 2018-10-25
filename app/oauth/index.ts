@@ -13,17 +13,17 @@ const instance = {
 };
 
 export default app => {
-  app.passport.verify(async (ctx, user, done) => {
+  app.passport.verify(async (ctx, user) => {
     const provider = user.provider;
     if (provider && instance[provider]) {
       user = await instance[provider].start.call(ctx, ctx, user);
     }
-    done(null, user);
     if(user.isNew) {
       ctx.redirect('/user/fullinfo');
     } else {
       ctx.redirect('/');
     }
+    return user;
   });
   // https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
   app.passport.serializeUser(function* (ctx, user) {
