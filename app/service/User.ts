@@ -14,7 +14,6 @@ export default class User extends Service {
 
   public async validateLocalCredit({ username, password }) {
     const { ctx } = this;
-
     const getUser = pusername => {
       if (pusername.indexOf('@') > 0) {
         return ctx.service.user.getUserByMail(pusername);
@@ -26,7 +25,7 @@ export default class User extends Service {
       return null;
     }
 
-    const passhash = existUser.user_pass;
+    const passhash = ctx.helper.bhash(existUser.user_pass); // existUser.user_pass
     const equal = ctx.helper.bcompare(password, passhash);
     // 密码不匹配
     if (!equal) {
@@ -82,7 +81,7 @@ export default class User extends Service {
 
   public async createUserByGithubInfo(res) {
     const { profile } = res;
-    const { app } = this;
+    const { app, ctx } = this;
     const { WpUsers, WpOauthGithub } = app.model;
     const email =
       profile.emails && profile.emails[0] && profile.emails[0].value;
@@ -99,7 +98,7 @@ export default class User extends Service {
       }
     });
     if (!sysuser) {
-      const pass = randomString(12);
+      const pass = randomString(12); // ctx.helper.bhash(randomString(12));
       // 创建主表
       sysuser = await WpUsers.create(
         {
