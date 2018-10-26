@@ -1,5 +1,13 @@
 import { stringify } from 'qs';
 import request from 'utils/request';
+import axios from './axios';
+
+
+
+
+export async function queryAccountLogin(params) {
+  return axios.post('/passport/local', params)
+}
 
 export async function queryProjectNotice() {
   return request('/api/project/notice');

@@ -30,8 +30,8 @@ export default (app: Application) => {
   // app.get('/passport/github/callback2', app.passport.authenticate('github', function* (err, user, info, status) {
   //   console.log(err, user, info, status);
   // }));
-
-  // router.get('/passport/localapikey', app.passport.authenticate('localapikey'));
+  const localStrategy = app.passport.authenticate('local');
+  app.router.post('/passport/local', localStrategy);
   router.get('/logout', 'user.logout');
 
   admin(app);

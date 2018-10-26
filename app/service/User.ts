@@ -12,6 +12,12 @@ export default class User extends Service {
     return this.ctx.user;
   }
 
+  public async validateLocalCredit(params) {
+    // const { app } = this;
+    console.info(params);
+    return;
+  }
+
   public async getUserByGithubId(id) {
     const { app } = this;
     // select user.* from wp_users user
@@ -139,6 +145,7 @@ export default class User extends Service {
         last_update: profile._json.updated_at
       });
     }
+    delete sysuser.user_pass;
     return sysuser;
   }
 }

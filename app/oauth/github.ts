@@ -9,6 +9,4 @@ export default class Github implements IOAuth {
     }
     return existUser;
   }
-  save() {}
-  callBack() {}
 }

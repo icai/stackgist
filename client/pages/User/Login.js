@@ -18,31 +18,15 @@ const { Tab, UserName, Password, Mobile, Captcha, Submit } = Login;
   };
 })
 class LoginPage extends Component {
+  static async getInitialProps(props) {
+    return {
+    }
+  }
   state = {
     type: 'account',
     autoLogin: true
   };
 
-  onTabChange = type => {
-    this.setState({ type });
-  };
-
-  onGetCaptcha = () =>
-    new Promise((resolve, reject) => {
-      this.loginForm.validateFields(['mobile'], {}, (err, values) => {
-        if (err) {
-          reject(err);
-        } else {
-          const { dispatch } = this.props;
-          dispatch({
-            type: 'login/getCaptcha',
-            payload: values.mobile
-          })
-            .then(resolve)
-            .catch(reject);
-        }
-      });
-    });
 
   handleSubmit = (err, values) => {
     const { type } = this.state;
@@ -75,13 +59,13 @@ class LoginPage extends Component {
 
   render() {
     const { login, submitting } = this.props;
+    console.info(this.props);
     const { type, autoLogin } = this.state;
     return (
       <UserLayout>
         <div className={styles.main}>
           <Login
             defaultActiveKey={type}
-            onTabChange={this.onTabChange}
             onSubmit={this.handleSubmit}
             ref={form => {
               this.loginForm = form;
