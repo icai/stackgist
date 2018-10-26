@@ -12,19 +12,59 @@ export default class User extends Service {
     return this.ctx.user;
   }
 
-  public async validateLocalCredit(params) {
-    // const { app } = this;
-    console.info(params);
-    return;
+  public async validateLocalCredit({ username, password }) {
+    const { ctx } = this;
+
+    const getUser = pusername => {
+      if (pusername.indexOf('@') > 0) {
+        return ctx.service.user.getUserByMail(pusername);
+      }
+      return ctx.service.user.getUserByLoginName(pusername);
+    };
+    const existUser = await getUser(username);
+    if (!existUser) {
+      return null;
+    }
+
+    const passhash = existUser.user_pass;
+    const equal = ctx.helper.bcompare(password, passhash);
+    // 密码不匹配
+    if (!equal) {
+      return null;
+    }
+
+    return existUser;
+  }
+
+  public async getUserByMail(email) {
+    const { app } = this;
+    const { WpUsers } = app.model;
+    return await WpUsers.findOne({
+      where: {
+        user_email: email
+      },
+      raw: true
+    });
+  }
+
+  public async getUserByLoginName(username) {
+    const { app } = this;
+    const { WpUsers } = app.model;
+    return await WpUsers.findOne({
+      where: {
+        user_login: username
+      },
+      raw: true
+    });
   }
 
   public async getUserByGithubId(id) {
     const { app } = this;
+    const { WpUsers, WpOauthGithub } = app.model;
     // select user.* from wp_users user
     // inner join wp_oauth_github github
     // on user.ID = github.user_id
     // where github.id = 1 LIMIT 1;
-    const { WpUsers, WpOauthGithub } = app.model;
     return await WpUsers.findOne({
       include: [
         {
@@ -39,61 +79,6 @@ export default class User extends Service {
       raw: true
     });
   }
-
-/*
-{ provider: 'github',
-  id: '1061012',
-  name: 'icai',
-  displayName: 'Terry Cai',
-  photo: 'https://avatars2.githubusercontent.com/u/1061012?v=4',
-  accessToken: 'xxx',
-  refreshToken: undefined,
-  params:
-   { access_token: 'xxx',
-     scope: '',
-     token_type: 'bearer' },
-  profile:
-   { id: '1061012',
-     displayName: 'Terry Cai',
-     username: 'icai',
-     profileUrl: 'https://github.com/icai',
-     emails: [ [Object] ],
-     photos: [ [Object] ],
-     provider: 'github',
-     _json:
-      { login: 'icai',
-        id: 1061012,
-        node_id: 's=',
-        avatar_url: 'https://avatars2.githubusercontent.com/u/1061012?v=4',
-        gravatar_id: '',
-        url: 'https://api.github.com/users/icai',
-        html_url: 'https://github.com/icai',
-        followers_url: 'https://api.github.com/users/icai/followers',
-        following_url: 'https://api.github.com/users/icai/following{/other_user}',
-        gists_url: 'https://api.github.com/users/icai/gists{/gist_id}',
-        starred_url: 'https://api.github.com/users/icai/starred{/owner}{/repo}',
-        subscriptions_url: 'https://api.github.com/users/icai/subscriptions',
-        organizations_url: 'https://api.github.com/users/icai/orgs',
-        repos_url: 'https://api.github.com/users/icai/repos',
-        events_url: 'https://api.github.com/users/icai/events{/privacy}',
-        received_events_url: 'https://api.github.com/users/icai/received_events',
-        type: 'User',
-        site_admin: false,
-        name: 'Terry Cai',
-        company: null,
-        blog: 'https://blog.w3cub.com/',
-        location: 'Guangzhou, China',
-        email: '',
-        hireable: null,
-        bio: null,
-        public_repos: 134,
-        public_gists: 28,
-        followers: 47,
-        following: 25,
-        created_at: '2011-09-19T03:51:52Z',
-        updated_at: '2018-10-23T15:11:08Z' }
-      } }
-  */
 
   public async createUserByGithubInfo(res) {
     const { profile } = res;

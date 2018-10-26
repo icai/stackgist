@@ -27,9 +27,7 @@ export default (app: Application) => {
   });
   router.get('/passport/github', githubAuth);
   router.get('/passport/github/callback', githubAuth);
-  // app.get('/passport/github/callback2', app.passport.authenticate('github', function* (err, user, info, status) {
-  //   console.log(err, user, info, status);
-  // }));
+
   const localStrategy = app.passport.authenticate('local');
   app.router.post('/passport/local', localStrategy);
   router.get('/logout', 'user.logout');

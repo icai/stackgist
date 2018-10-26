@@ -77,7 +77,7 @@ class LoginPage extends Component {
                 this.renderMessage(
                   formatMessage({ id: 'app.login.message-invalid-credentials' })
                 )}
-              <UserName name="userName" placeholder="admin/user" />
+              <UserName name="username" placeholder="admin/user" />
               <Password
                 name="password"
                 placeholder="888888/123456"

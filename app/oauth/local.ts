@@ -2,9 +2,9 @@ import IOAuth from './oath';
 
 export default class Local implements IOAuth {
   async start(ctx, res) {
-    const { profile } = res;
+    // const { profile } = res;
     // tslint:disable-next-line:no-debugger
-    const  existUser = await ctx.service.user.validateLocalCredit(profile);
+    const  existUser = await ctx.service.user.validateLocalCredit(res);
     return existUser;
   }
 }

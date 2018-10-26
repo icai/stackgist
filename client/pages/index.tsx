@@ -23,7 +23,7 @@ class Index extends Component<{
             <hr />
             <a href="/">Home</a> | <a href="/user">User</a>
             <hr/>
-            <a href="/user/login">Login</a> | <a href="/logout">Login</a>
+            <a href="/user/login">Login</a> | <a href="/logout">Logout</a>
             <hr/>
             {JSON.stringify(user)}
         </div>
