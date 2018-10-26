@@ -55,6 +55,7 @@
     "antd": "^3.10.1",
     "axios": "^0.18.0",
     "babel-plugin-import": "^1.10.0",
+    "bcryptjs": "^2.4.3",
     "bizcharts": "^3.2.4",
     "bizcharts-plugin-slider": "^2.1.1-beta.1",
     "body-parser": "^1.18.3",

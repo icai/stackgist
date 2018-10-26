@@ -22,6 +22,9 @@ class Index extends Component<{
             <a href="/passport/bitbucket">Bitbucket</a> | <a href="/passport/twitter">Twitter</a>
             <hr />
             <a href="/">Home</a> | <a href="/user">User</a>
+            <hr/>
+            <a href="/user/login">Login</a> | <a href="/logout">Login</a>
+            <hr/>
             {JSON.stringify(user)}
         </div>
         <Footer></Footer>
