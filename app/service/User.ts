@@ -39,7 +39,6 @@ export default class User extends Service {
     const { app } = this;
     const { WpUsers } = app.model;
     return await WpUsers.findOne({
-      attributes: { exclude: ['user_pass'] },
       where: {
         user_email: email
       },
@@ -51,7 +50,6 @@ export default class User extends Service {
     const { app } = this;
     const { WpUsers } = app.model;
     return await WpUsers.findOne({
-      attributes: { exclude: ['user_pass'] },
       where: {
         user_login: username
       },
@@ -67,7 +65,6 @@ export default class User extends Service {
     const { app } = this;
     const { WpUsers, WpOauthGithub } = app.model;
     return await WpUsers.findOne({
-      attributes: { exclude: ['user_pass'] },
       include: [
         {
           attributes: [],
