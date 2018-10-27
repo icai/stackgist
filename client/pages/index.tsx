@@ -1,19 +1,22 @@
 
 import React, { Component } from 'react';
-
+import { connect } from 'dva';
 import Footer from 'layout/Footer';
 import Layout from 'layout';
 
+@connect(({ user }) => ({
+  currentUser: user.currentUser,
+}))
 class Index extends Component<{
   user;
 }> {
   static async getInitialProps({ctx}) {
     return {
-      user: ctx.req.user
+      user: ctx.isServer ? ctx.req.user : ctx.store.getState().user.currentUser || {}
     }
   }
   render () {
-    const user = this.props.user
+    const user = this.props.user;
     return (
       <Layout>
         <div>

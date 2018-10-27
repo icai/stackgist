@@ -18,11 +18,11 @@ export default app => {
     if (provider && instance[provider]) {
       user = await instance[provider].start.call(ctx, ctx, user);
     }
-    // if(user.isNew) {
-    //   ctx.redirect('/user/fullinfo');
-    // } else {
-    //   ctx.redirect('/');
-    // }
+    if(provider === 'local' && user) {
+      ctx.status = 200;
+      ctx.body = JSON.stringify({ success: true, user });
+      // return false;
+    }
     return user;
   });
   // https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize

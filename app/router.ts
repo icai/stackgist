@@ -1,6 +1,6 @@
 import { Application } from 'egg';
 
-import admin from './router/admin'
+import admin from './router/admin';
 
 export default (app: Application) => {
   const { controller, router } = app;
@@ -28,9 +28,8 @@ export default (app: Application) => {
   router.get('/passport/github', githubAuth);
   router.get('/passport/github/callback', githubAuth);
 
-  const localStrategy = app.passport.authenticate('local');
+  const localStrategy = app.passport.authenticate('local', { successReturnToOrRedirect: null });
   app.router.post('/passport/local', localStrategy);
   router.get('/logout', 'user.logout');
-
   admin(app);
 };

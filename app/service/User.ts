@@ -39,6 +39,7 @@ export default class User extends Service {
     const { app } = this;
     const { WpUsers } = app.model;
     return await WpUsers.findOne({
+      attributes: { exclude: ['user_pass'] },
       where: {
         user_email: email
       },
@@ -50,6 +51,7 @@ export default class User extends Service {
     const { app } = this;
     const { WpUsers } = app.model;
     return await WpUsers.findOne({
+      attributes: { exclude: ['user_pass'] },
       where: {
         user_login: username
       },
@@ -57,14 +59,15 @@ export default class User extends Service {
     });
   }
 
+  // select user.* from wp_users user
+  // inner join wp_oauth_github github
+  // on user.ID = github.user_id
+  // where github.id = 1 LIMIT 1;
   public async getUserByGithubId(id) {
     const { app } = this;
     const { WpUsers, WpOauthGithub } = app.model;
-    // select user.* from wp_users user
-    // inner join wp_oauth_github github
-    // on user.ID = github.user_id
-    // where github.id = 1 LIMIT 1;
     return await WpUsers.findOne({
+      attributes: { exclude: ['user_pass'] },
       include: [
         {
           attributes: [],
@@ -81,7 +84,7 @@ export default class User extends Service {
 
   public async createUserByGithubInfo(res) {
     const { profile } = res;
-    const { app, ctx } = this;
+    const { app } = this;
     const { WpUsers, WpOauthGithub } = app.model;
     const email =
       profile.emails && profile.emails[0] && profile.emails[0].value;

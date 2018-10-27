@@ -13,15 +13,20 @@ export default {
   },
 
   effects: {
-    *login({ payload }, { call, put }) {
+    *login({ payload }, ctx) {
+      const { call, put } = ctx;
       const response = yield call(queryAccountLogin, payload);
       yield put({
         type: 'changeLoginStatus',
         payload: response,
       });
       // Login successfully
-      if (response.status === 'ok') {
-        reloadAuthorized();
+      if (response.status === 200) {
+        yield put({
+          type: 'user/saveCurrentUser',
+          payload: response.data.user
+        })
+        // reloadAuthorized();
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params;
@@ -37,7 +42,9 @@ export default {
             return;
           }
         }
-        yield put(Router.replace(redirect || '/'));
+        Router.replace(redirect || '/')
+        // yield put();
+        // yield put(window.location.href = redirect || '/');
       }
     },
 

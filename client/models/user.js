@@ -23,6 +23,12 @@ export default {
         payload: response,
       });
     },
+    *cacheCurrent({ payload }, { call, put }) {
+      yield put({
+        type: 'saveCurrentUser',
+        payload: payload,
+      });
+    }
   },
 
   reducers: {
