@@ -56,10 +56,83 @@ export default class User extends Service {
       raw: true
     });
   }
+  /**
+   * weibo
+   * @param id weiboid
+   */
+  public async getUserByWeiboId(id) {
+    const { app } = this;
+    const { WpUsers, WpOauthWeibo } = app.model;
+    return await WpUsers.findOne({
+      include: [
+        {
+          attributes: [],
+          model: WpOauthWeibo,
+          require: true,
+          where: {
+            id
+          }
+        }
+      ],
+      raw: true
+    });
+  }
+
+  public async createUserByWeiboInfo(res) {
+    const { profile } = res;
+    const { app } = this;
+    const { WpUsers, WpOauthWeibo } = app.model;
+    let weibouser = await WpOauthWeibo.findOne({
+      attributes: ['id', 'user_id'],
+      where: {
+        id: profile.id
+      }
+    });
+    let sysuser;
+    if(weibouser) {
+      sysuser = await WpUsers.findOne({
+        where: {
+          id: weibouser.user_id
+        }
+      });
+    } else {
+      const mdata = profile._json;
+      const pass = randomString(12); // ctx.helper.bhash(randomString(12));
+      // 创建主表
+      sysuser = await WpUsers.create(
+        {
+          user_login: 'w_' + mdata.id,
+          user_pass: pass,
+          user_nicename: profile.displayName,
+          user_email: '',
+          user_url: 'https://weibo.com/' + mdata.profile_url,
+          user_registered: nowISO(),
+          display_name: profile.displayName
+        },
+        { isNewRecord: true }
+      );
+      weibouser = await WpOauthWeibo.create({
+        id: profile.id,
+        user_id: sysuser.id,
+        uid: mdata.weihao,
+        last_update: mdata.status.created_at,
+        nickname: profile.displayName,
+        gender: mdata.gender,
+        description: mdata.description,
+        profile_url: mdata.profile_url,
+        location: mdata.location,
+        province: mdata.province,
+        city: mdata.city,
+        img: res.photo
+      });
+    }
+    delete sysuser.user_pass;
+    return sysuser;
+  }
 
   // select user.* from wp_users user
   // inner join wp_oauth_github github
-  // on user.ID = github.user_id
+  // on user.id = github.user_id
   // where github.id = 1 LIMIT 1;
   public async getUserByGithubId(id) {
     const { app } = this;
@@ -92,7 +165,6 @@ export default class User extends Service {
       }
     });
     let sysuser = await WpUsers.findOne({
-      // attributes: ['id'],
       where: {
         user_email: email
       }

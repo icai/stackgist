@@ -70,9 +70,8 @@ module.exports = app => {
       unique: true
     }]
   });
-  Model.associate = function () {
-
+  Model.associate = function (models) {
+    Model.belongsTo(app.model.WpUsers, { foreignKey: 'user_id' })
   }
-
   return Model;
 };
