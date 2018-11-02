@@ -89,7 +89,7 @@ export default class User extends Service {
       }
     });
     let sysuser;
-    if(weibouser) {
+    if (weibouser) {
       sysuser = await WpUsers.findOne({
         where: {
           id: weibouser.user_id

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { formatMessage } from 'umi/locale';
 import { Layout, message } from 'antd';
 import Animate from 'rc-animate';
-import { connect } from 'dva-no-router';
+import { connect } from 'dva';
 import router from 'umi/router';
 import GlobalHeader from '@/components/GlobalHeader';
 import TopNavHeader from 'components/TopNavHeader';

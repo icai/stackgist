@@ -17,7 +17,7 @@
       "inlineSourceMap": false,
       "importHelpers": true,
       "jsx": "preserve",
-      "allowJs": false,
+      "allowJs": true,
       "moduleResolution": "node",
       "experimentalDecorators": true,
       "allowSyntheticDefaultImports": true,
@@ -30,7 +30,6 @@
       "baseUrl": ".",
       "rootDirs":[
           "./",
-          "../app/",
       ],
       "paths": {
         "app/*" : ["../app/*"],
