@@ -11,7 +11,33 @@ export default class User extends Service {
   public async find() {
     return this.ctx.user;
   }
+  /**
+   *  创建注册用户信息
+   * @param param0 用户信息
+   */
+  public async createRegisterUser({ userName, password }) {
+    const { app, ctx } = this;
+    const { WpUsers } = app.model;
+    const pass = ctx.helper.bhash(password);
+    const sysuser = await WpUsers.create(
+      {
+        user_login: userName,
+        user_pass: pass,
+        user_nicename: userName,
+        user_email: userName,
+        user_url: '',
+        user_registered: nowISO(),
+        display_name: userName
+      },
+      { isNewRecord: true }
+    );
+    return sysuser;
+  }
 
+  /**
+   * 登录校验
+   * @param param0 登录校验
+   */
   public async validateLocalCredit({ username, password }) {
     const { ctx } = this;
     const getUser = pusername => {
@@ -24,8 +50,7 @@ export default class User extends Service {
     if (!existUser) {
       return null;
     }
-
-    const passhash = ctx.helper.bhash(existUser.user_pass); // existUser.user_pass
+    const passhash = existUser.user_pass;
     const equal = ctx.helper.bcompare(password, passhash);
     // 密码不匹配
     if (!equal) {
@@ -34,7 +59,10 @@ export default class User extends Service {
 
     return existUser;
   }
-
+  /**
+   * 根据用户邮件获取用户model
+   * @param email 邮件
+   */
   public async getUserByMail(email) {
     const { app } = this;
     const { WpUsers } = app.model;
@@ -45,7 +73,10 @@ export default class User extends Service {
       raw: true
     });
   }
-
+  /**
+   * 根据登陆名字获取用户model
+   * @param username 用户名
+   */
   public async getUserByLoginName(username) {
     const { app } = this;
     const { WpUsers } = app.model;
@@ -57,7 +88,7 @@ export default class User extends Service {
     });
   }
   /**
-   * weibo
+   * 根据weibo ID 获取用户model
    * @param id weiboid
    */
   public async getUserByWeiboId(id) {
@@ -77,10 +108,13 @@ export default class User extends Service {
       raw: true
     });
   }
-
+  /**
+   * 根据微博返回信息创建用户
+   * @param res weibo 返回收据
+   */
   public async createUserByWeiboInfo(res) {
     const { profile } = res;
-    const { app } = this;
+    const { app, ctx } = this;
     const { WpUsers, WpOauthWeibo } = app.model;
     let weibouser = await WpOauthWeibo.findOne({
       attributes: ['id', 'user_id'],
@@ -97,7 +131,7 @@ export default class User extends Service {
       });
     } else {
       const mdata = profile._json;
-      const pass = randomString(12); // ctx.helper.bhash(randomString(12));
+      const pass = ctx.helper.bhash(randomString(12));
       // 创建主表
       sysuser = await WpUsers.create(
         {
@@ -129,11 +163,10 @@ export default class User extends Service {
     delete sysuser.user_pass;
     return sysuser;
   }
-
-  // select user.* from wp_users user
-  // inner join wp_oauth_github github
-  // on user.id = github.user_id
-  // where github.id = 1 LIMIT 1;
+  /**
+   * 根据github ID 获取用户model
+   * @param id github id
+   */
   public async getUserByGithubId(id) {
     const { app } = this;
     const { WpUsers, WpOauthGithub } = app.model;
@@ -151,10 +184,13 @@ export default class User extends Service {
       raw: true
     });
   }
-
+  /**
+   * 根据Github返回信息创建用户
+   * @param res Github 返回收据
+   */
   public async createUserByGithubInfo(res) {
     const { profile } = res;
-    const { app } = this;
+    const { app, ctx } = this;
     const { WpUsers, WpOauthGithub } = app.model;
     const email =
       profile.emails && profile.emails[0] && profile.emails[0].value;
@@ -170,7 +206,7 @@ export default class User extends Service {
       }
     });
     if (!sysuser) {
-      const pass = randomString(12); // ctx.helper.bhash(randomString(12));
+      const pass = ctx.helper.bhash(randomString(12));
       // 创建主表
       sysuser = await WpUsers.create(
         {

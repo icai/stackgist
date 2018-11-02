@@ -3,7 +3,9 @@ import request from 'utils/request';
 import axios from './axios';
 
 
-
+export async function queryRegister(params) {
+  return axios.post('/passport/register', params)
+}
 
 export async function queryAccountLogin(params) {
   return axios.post('/passport/local', params)

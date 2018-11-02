@@ -24,7 +24,7 @@ class Index extends Component<{
             <a href="/passport/weibo">Weibo</a> | <a href="/passport/github">Github</a> |
             <a href="/passport/bitbucket">Bitbucket</a> | <a href="/passport/twitter">Twitter</a>
             <hr />
-            <a href="/">Home</a> | <a href="/user">User</a>
+            <a href="/">Home</a> | <a href="/user">User</a> | <a href="/user/register">Register</a>
             <hr/>
             <a href="/user/login">Login</a> | <a href="/logout">Logout</a>
             <hr/>
