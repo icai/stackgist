@@ -4,9 +4,9 @@ export default class HomeController extends Controller {
   public async index() {
     const { ctx } = this;
     if (ctx.isAuthenticated()) {
-      await this.ctx.render('/index');
+      await this.ctx.render('/index.js');
     } else {
-      await this.ctx.render('/index');
+      await this.ctx.render('/index.js');
     }
   }
 

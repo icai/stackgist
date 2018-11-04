@@ -95,12 +95,12 @@ class Register extends Component {
     const { form, dispatch } = this.props;
     form.validateFields({ force: true }, (err, values) => {
       if (!err) {
-        const { prefix } = this.state;
+        // const { prefix } = this.state;
         dispatch({
           type: 'register/submit',
           payload: {
             ...values,
-            prefix
+            // prefix
           }
         });
       }
