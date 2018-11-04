@@ -45,9 +45,4 @@ plugin.routerPlus = {
   package: 'egg-router-plus'
 };
 
-plugin.i18n = {
-  enable: true,
-  package: 'egg-i18n'
-};
-
 export default plugin;
