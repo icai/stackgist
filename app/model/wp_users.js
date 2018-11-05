@@ -76,6 +76,7 @@ module.exports = app => {
   });
 
   Model.associate = function (models) {
+    Model.hasMany(app.model.WpPosts, { foreignKey: 'post_author' })
     Model.hasOne(app.model.WpOauthGithub, { foreignKey: 'user_id' })
     Model.hasOne(app.model.WpOauthWeibo, { foreignKey: 'user_id' })
     Model.hasOne(app.model.WpOauthDingding, { foreignKey: 'user_id' })

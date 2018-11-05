@@ -4,12 +4,12 @@ module.exports = app => {
   const DataTypes = app.Sequelize;
 
   const Model = app.model.define('wp_comments', {
-    comment_ID: {
+    comment_id: {
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true
     },
-    comment_post_ID: {
+    comment_post_id: {
       type: DataTypes.BIGINT,
       allowNull: false,
       defaultValue: '0'
@@ -82,9 +82,9 @@ module.exports = app => {
     tableName: 'wp_comments',
     indexes: [{
       fields: [{
-        attribute: 'comment_post_ID'
+        attribute: 'comment_post_id'
       }],
-      name: 'comment_post_ID'
+      name: 'comment_post_id'
     }, {
       fields: [{
         attribute: 'comment_approved'

@@ -125,7 +125,7 @@ class Index extends PureComponent {
     } = this.props;
 
     const pageHeaderContent =
-      currentUser && Object.keys(currentUser).length ? (
+      currentUser ? (
         <div className={styles.pageHeaderContent}>
           <div className={styles.avatar}>
             <Avatar size="large" src={currentUser.avatar} />
@@ -172,17 +172,66 @@ class Index extends PureComponent {
         >
           <Row gutter={24}>
             <Col xl={16} lg={24} md={24} sm={24} xs={24}>
-            <div>
-                Login with
-                <a href="/passport/weibo">Weibo</a> | <a href="/passport/github">Github</a> |
-                <a href="/passport/bitbucket">Bitbucket</a> | <a href="/passport/twitter">Twitter</a>
-                <hr />
-                <a href="/">Home</a> | <a href="/user">User</a> | <a href="/user/register">Register</a>
-                <hr/>
-                <a href="/user/login">Login</a> | <a href="/logout">Logout</a>
-                <hr/>
-                {JSON.stringify(user)}
-            </div>
+            <Card
+              className={styles.projectList}
+              style={{ marginBottom: 24 }}
+              title="进行中的项目"
+              bordered={false}
+              extra={<Link to="/">全部项目</Link>}
+              loading={projectLoading}
+              bodyStyle={{ padding: 0 }}
+            >
+              {notice.map(item => (
+                <Card.Grid className={styles.projectGrid} key={item.id}>
+                  <Card bodyStyle={{ padding: 0 }} bordered={false}>
+                    <Card.Meta
+                      title={
+                        <div className={styles.cardTitle}>
+                          <Avatar size="small" src={item.logo} />
+                          <Link to={item.href}>{item.title}</Link>
+                        </div>
+                      }
+                      description={item.description}
+                    />
+                    <div className={styles.projectItemContent}>
+                      <Link to={item.memberLink}>{item.member || ''}</Link>
+                      {item.updatedAt && (
+                        <span className={styles.datetime} title={item.updatedAt}>
+                          {moment(item.updatedAt).fromNow()}
+                        </span>
+                      )}
+                    </div>
+                  </Card>
+                </Card.Grid>
+              ))}
+            </Card>
+            <Card
+              bodyStyle={{ padding: 0 }}
+              bordered={false}
+              className={styles.activeCard}
+              title="动态"
+              loading={activitiesLoading}
+            >
+              <List loading={activitiesLoading} size="large">
+
+                <div className={styles.activitiesList}>{this.renderActivities()}
+
+                                <div>
+                  Login with
+                  <a href="/passport/weibo">Weibo</a> | <a href="/passport/github">Github</a> |
+                  <a href="/passport/bitbucket">Bitbucket</a> | <a href="/passport/twitter">Twitter</a>
+                  <hr />
+                  <a href="/">Home</a> | <a href="/user">User</a> | <a href="/user/register">Register</a>
+                  <hr/>
+                  <a href="/user/login">Login</a> | <a href="/logout">Logout</a>
+                  <hr/>
+                  {JSON.stringify(user)}
+              </div>
+                
+                </div>
+              </List>
+            </Card>
+
             </Col>
             <Col xl={8} lg={24} md={24} sm={24} xs={24}>
               <Card

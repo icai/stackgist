@@ -1,14 +1,12 @@
 /* indent size: 2 */
 
-const _ = require('lodash');
+
 
 module.exports = app => {
   const DataTypes = app.Sequelize;
-
   const Op = DataTypes.Op;
-
   const Model = app.model.define('wp_posts', {
-    ID: {
+    id: {
       type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
@@ -135,7 +133,7 @@ module.exports = app => {
       }, {
         attribute: 'post_date'
       }, {
-        attribute: 'ID'
+        attribute: 'id'
       }],
       name: 'type_status_date'
     }, {
@@ -153,45 +151,8 @@ module.exports = app => {
   });
 
   Model.associate = function() {
-
+    Model.belongsTo(app.model.WpUsers, { foreignKey: 'post_author' })
   }
-
-  Model.getAvailablePostIds = async (offset = 0, limit = 10) => {
-    return await Model.findAll({
-      offset,
-      limit,
-      attributes: ['ID'],
-      where: {
-        // 1: 1,
-        post_type: 'post',
-        [Op.or]: [{
-          post_status: 'publish'
-        },{
-          post_status: 'private'
-        }]
-      },
-      raw : true,
-      order: [['post_date', 'DESC']]
-    })
-  }
-
-  Model.getPostsByIds = async (ids) => {
-    return await Model.findAll({
-      where: {
-        ID: {
-          [Op.in]: ids
-        }
-      },
-      raw : true
-    })
-  }
-
-  Model.getPosts = async (offset = 0, limit = 10) =>{
-    const idsobj = await Model.getAvailablePostIds(offset, limit);
-    const ids = _.map(idsobj, 'ID');
-    return await Model.getPostsByIds(ids || []);
-  }
-
 
   return Model;
 };
