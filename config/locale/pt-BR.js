@@ -1,4 +1,6 @@
 export default {
+  'navBar.login': 'Login',
+  'navBar.register': 'Cadastro',
   'navBar.lang': 'Idiomas',
   'layout.user.link.help': 'ajuda',
   'layout.user.link.privacy': 'política de privacidade',

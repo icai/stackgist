@@ -1,4 +1,6 @@
 export default {
+  'navBar.login': '登錄',
+  'navBar.register': '註冊',
   'navBar.lang': '語言',
   'layout.user.link.help': '幫助',
   'layout.user.link.privacy': '隱私',

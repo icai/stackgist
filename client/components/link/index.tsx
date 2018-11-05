@@ -1,4 +1,3 @@
-import { View } from 'ui';
 import React, { Component } from 'react';
 import Router, { withRouter } from 'next/router';
 

@@ -9,8 +9,4 @@ export default class HomeController extends Controller {
       await this.ctx.render('/index.js');
     }
   }
-
-  public async next() {
-    await this.ctx.render('/next');
-  }
 }

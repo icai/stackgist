@@ -12,7 +12,6 @@ export default (app: Application) => {
 
   router.get('/user/login', controller.user.login);
   router.get('/user/register', controller.user.register);
-  router.get('/nextrender', controller.home.next);
 
   const weiboAuth = app.passport.authenticate('weibo');
   router.get('/passport/weibo', weiboAuth);

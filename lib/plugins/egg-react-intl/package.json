@@ -1,0 +1,6 @@
+{
+    "name": "egg-react-intl",
+    "eggPlugin": {
+        "name": "reactIntl"
+    }
+}

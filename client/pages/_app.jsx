@@ -16,29 +16,29 @@ import '../global.less';
 const defaultAntd = require('antd/lib/locale-provider/zh_CN');
 
 const localeInfo = {
-  'en-US': {
-    messages: require('../locales/en-US.js').default,
+  'en-us': {
+    messages: require('../../config/locale/en-US.js').default,
     locale: 'en-US',
     antd: require('antd/lib/locale-provider/en_US'),
     data: require('react-intl/locale-data/en'),
     momentLocale: ''
   },
-  'pt-BR': {
-    messages: require('../locales/pt-BR.js').default,
+  'pt-br': {
+    messages: require('../../config/locale/pt-BR.js').default,
     locale: 'pt-BR',
     antd: require('antd/lib/locale-provider/pt_BR'),
     data: require('react-intl/locale-data/pt'),
     momentLocale: 'pt-br'
   },
-  'zh-CN': {
-    messages: require('../locales/zh-CN.js').default,
+  'zh-cn': {
+    messages: require('../../config/locale/zh-CN.js').default,
     locale: 'zh-CN',
     antd: require('antd/lib/locale-provider/zh_CN'),
     data: require('react-intl/locale-data/zh'),
     momentLocale: 'zh-cn'
   },
-  'zh-TW': {
-    messages: require('../locales/zh-TW.js').default,
+  'zh-tw': {
+    messages: require('../../config/locale/zh-TW.js').default,
     locale: 'zh-TW',
     antd: require('antd/lib/locale-provider/zh_TW'),
     data: require('react-intl/locale-data/zh'),
@@ -47,7 +47,7 @@ const localeInfo = {
 };
 
 let appLocale = {
-  locale: 'zh-CN',
+  locale: 'zh-cn',
   messages: {},
   data: require('react-intl/locale-data/zh'),
   momentLocale: 'zh-cn'
@@ -65,14 +65,12 @@ if (typeof window !== 'undefined' && window.ReactIntlLocaleData) {
   Object.keys(window.ReactIntlLocaleData).forEach(lang => {
     addLocaleData(window.ReactIntlLocaleData[lang]);
   });
-} else {
-  appLocale = localeInfo['zh-CN'] || appLocale;
-  appLocale.data && addLocaleData(appLocale.data);
 }
 
 
 class MyApp extends App {
   static async getInitialProps(props) {
+
     const { Component, router, ctx, store } = props;
     const { req, isServer } = ctx;
     let pageProps = {};
@@ -84,17 +82,22 @@ class MyApp extends App {
     // In the browser, use the same values that the server serialized.
     
     const { locale, messages } = req || window.__NEXT_DATA__.props;
+
+
     return { pageProps, locale, messages };
   }
 
   render() {
     const { Component, pageProps, store, locale, messages } = this.props;
+
+    appLocale = localeInfo[locale] || appLocale;
+    appLocale.data && addLocaleData(appLocale.data);
+
     const now = Date.now();
     return (
       <Container>
         <LocaleProvider locale={appLocale.antd || defaultAntd}>
           <IntlProvider locale={appLocale.locale} messages={appLocale.messages} initialNow={now}>
-           {/* <IntlProvider locale={locale} messages={messages} initialNow={now}> */}
             <InjectedWrapper>
               <Provider store={store}>
                 {<Component {...pageProps} />}

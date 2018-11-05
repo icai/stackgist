@@ -142,7 +142,7 @@ export default class GlobalHeaderRight extends PureComponent {
           />
         </NoticeIcon> : 
         <span> 
-          <a href="/user/register">Register</a> <a href="/user/login">Login</a>
+          <a href="/user/register"><FormattedMessage id="navBar.register" defaultMessage="Register" /></a> · <a href="/user/login"><FormattedMessage id="navBar.login" defaultMessage="Login" /></a>
         </span>
         }
         {user && (

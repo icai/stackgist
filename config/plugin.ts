@@ -40,6 +40,11 @@ plugin.nextview = {
   path: path.join(__dirname, '../lib/plugins/egg-view-nextjs')
 };
 
+plugin.reactIntl = {
+  enable: true,
+  path: path.join(__dirname, '../lib/plugins/egg-react-intl')
+};
+
 plugin.routerPlus = {
   enable: true,
   package: 'egg-router-plus'
