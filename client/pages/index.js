@@ -136,55 +136,55 @@ class Index extends PureComponent {
       chart: { radarData }
     } = this.props;
 
-    const pageHeaderContent =
-      currentUser ? (
-        <div className={styles.pageHeaderContent}>
-          <div className={styles.avatar}>
-            <Avatar size="large" src={currentUser.avatar} />
-          </div>
-          <div className={styles.content}>
-            <div className={styles.contentTitle}>
-              早安，
-              {currentUser.name}
-              ，祝你开心每一天！
-            </div>
-            <div>
-              {currentUser.title} |{currentUser.group}
-            </div>
-          </div>
-        </div>
-      ) : null;
+    // const pageHeaderContent =
+    //   currentUser ? (
+    //     <div className={styles.pageHeaderContent}>
+    //       <div className={styles.avatar}>
+    //         <Avatar size="large" src={currentUser.avatar} />
+    //       </div>
+    //       <div className={styles.content}>
+    //         <div className={styles.contentTitle}>
+    //           早安，
+    //           {currentUser.name}
+    //           ，祝你开心每一天！
+    //         </div>
+    //         <div>
+    //           {currentUser.title} |{currentUser.group}
+    //         </div>
+    //       </div>
+    //     </div>
+    //   ) : null;
 
-    const extraContent = (
-      <div className={styles.extraContent}>
-        <div className={styles.statItem}>
-          <p>项目数</p>
-          <p>56</p>
-        </div>
-        <div className={styles.statItem}>
-          <p>团队内排名</p>
-          <p>
-            8<span> / 24</span>
-          </p>
-        </div>
-        <div className={styles.statItem}>
-          <p>项目访问</p>
-          <p>2,223</p>
-        </div>
-      </div>
-    );
+    // const extraContent = (
+    //   <div className={styles.extraContent}>
+    //     <div className={styles.statItem}>
+    //       <p>项目数</p>
+    //       <p>56</p>
+    //     </div>
+    //     <div className={styles.statItem}>
+    //       <p>团队内排名</p>
+    //       <p>
+    //         8<span> / 24</span>
+    //       </p>
+    //     </div>
+    //     <div className={styles.statItem}>
+    //       <p>项目访问</p>
+    //       <p>2,223</p>
+    //     </div>
+    //   </div>
+    // );
     const user = this.props.user;
 
     return (
       <BasicLayout {...this.props}>
         <PageHeaderWrapper
-          loading={currentUserLoading}
-          content={pageHeaderContent}
-          extraContent={extraContent}
+          // loading={currentUserLoading}
+          // content={pageHeaderContent}
+          // extraContent={extraContent}
         >
           <Row gutter={24}>
             <Col xl={16} lg={24} md={24} sm={24} xs={24}>
-            <Card
+            {/* <Card
               className={styles.projectList}
               style={{ marginBottom: 24 }}
               title="进行中的项目"
@@ -216,7 +216,7 @@ class Index extends PureComponent {
                   </Card>
                 </Card.Grid>
               ))}
-            </Card>
+            </Card> */}
             <Card
               bodyStyle={{ padding: 0 }}
               bordered={false}
@@ -227,12 +227,10 @@ class Index extends PureComponent {
               <List loading={activitiesLoading} size="large">
                 
                 <div className={styles.activitiesList}>{this.renderActivities()}
-                  <Articles list={list}></Articles>
-
+                  <Articles {...this.props} ></Articles>
                   <div>
                       {JSON.stringify(user)}
                   </div>
-                
                 </div>
               </List>
             </Card>

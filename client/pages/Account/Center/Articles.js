@@ -25,7 +25,7 @@ class Center extends PureComponent {
         rowKey="id"
         itemLayout="vertical"
         dataSource={list}
-        renderItem={item => (
+        renderItem={item => (        
           <List.Item
             key={item.id}
             actions={[
@@ -37,7 +37,7 @@ class Center extends PureComponent {
             <List.Item.Meta
               title={
                 <a className={styles.listItemMetaTitle} href={item.href}>
-                  {item.title}
+                  {item.post_title}
                 </a>
               }
               description={
