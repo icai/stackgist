@@ -1,17 +1,15 @@
-import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
+import { EggAppInfo } from 'egg';
 import PrivateConif from '../private/config';
 import * as path from 'path';
 
-// import * as nextjs from '../next.config';
-
-interface ExtConfig extends PowerPartial<EggAppConfig> {
-  keys: any;
-  middleware: any;
-  sequelize: any;
-}
-
 export default (appInfo: EggAppInfo) => {
-  const config = {} as ExtConfig;
+  const config = {} as any;
+
+  config.name = 'Stackgist';
+
+  config.host = 'http://127.0.0.1';
+
+  config.description = 'Stackgist';
 
   // override config from framework / plugin
   // use for cookie sign key, should change to your own and keep security
@@ -50,6 +48,7 @@ export default (appInfo: EggAppInfo) => {
     // Cookie 默认 `1y` 一年后过期， 如果设置为 Number，则单位为 ms
     cookieMaxAge: '1y',
   };
+
   // the return config will combines to EggAppConfig
   return {
     view,
