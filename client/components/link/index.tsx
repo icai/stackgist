@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Router, { withRouter } from 'next/router';
-
-import * as utils from 'libs/utils';
+import * as qs from 'qs';
 
 interface IProps {
   to:
@@ -33,7 +32,7 @@ class Link extends Component<IProps, PageState> {
       url = opts.toLowerCase();
       params = false;
     }
-    const href = url.toLowerCase() + (params ? '?' + utils.param(params) : '');
+    const href = url.toLowerCase() + (params ? '?' + qs.stringify(params) : '');
     return href;
   }
 
