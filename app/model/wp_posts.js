@@ -151,7 +151,7 @@ module.exports = app => {
   });
 
   Model.associate = function() {
-    Model.belongsTo(app.model.WpUsers, { foreignKey: 'post_author' })
+    Model.belongsTo(app.model.WpUsers, { foreignKey: 'post_author', as: 'user', through: app.model.WpUsers})
   }
 
   return Model;

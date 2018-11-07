@@ -47,16 +47,22 @@ export default class Posts extends Service {
 
   public async getPostsByIds(ids) {
     const { app } = this;
-    const Model = app.model.WpPosts;
+    const { WpPosts, WpUsers } = app.model;
     const DataTypes = app.Sequelize;
     const Op = DataTypes.Op;
-    return await Model.findAll({
+    return await WpPosts.findAll({
       where: {
         id: {
           [Op.in]: ids
         }
       },
-      raw: true
+      include: [{
+        model: WpUsers,
+        as: 'user',
+        attributes: ['display_name', 'user_email', 'user_avatar', 'id'],
+        nested: true
+      }],
+      // raw: true
     });
   }
 

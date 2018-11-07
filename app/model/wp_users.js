@@ -1,7 +1,58 @@
 /* indent size: 2 */
+import { md5 } from '../utils/crypto';
+import { rand } from '../utils/random';
+import * as qs from 'qs';
 
-module.exports = app => {
+module.exports = (app) => {
   const DataTypes = app.Sequelize;
+  const makeGravatar = (email, args = {}) =>{
+    args = Object.assign(
+      {
+        size: 96,
+        default: 'mystery',
+        // forceDefault: false
+      },
+      args
+    );
+    let $url = '';
+    const emailHash = md5(email);
+    let gravatarServer = 0;
+    // 随机服务器
+    if (emailHash) {
+      args.foundAvatar = true;
+      gravatarServer = parseInt(emailHash[0], 16) % 3;
+    } else {
+      gravatarServer = rand(0, 2);
+    }
+
+    switch (args.default) {
+      case 'mm':
+      case 'mystery':
+      case 'mysteryman':
+        args.default = 'mm';
+        break;
+      case 'gravatar_default':
+        args.default = false;
+        break;
+      default:
+      args.default = 'mm';
+    }
+
+    const urlArgs = {
+      s: args.size,
+      d: args.default,
+      // f: args.forceDefault ? 'y' : false,
+      r: args.rating
+    };
+    // if (truethis.ctx.isSsl()) {
+    //   $url = `https://secure.gravatar.com/avatar/${emailHash}`;
+    // } else {
+    // }
+    $url = `http://${gravatarServer}.gravatar.com/avatar/${emailHash}`;
+    
+    const query = qs.stringify(urlArgs, { encode : false });
+    return $url + (query ? `?${query}` : '');
+  }
 
   const Model = app.model.define('wp_users', {
     id: {
@@ -50,6 +101,12 @@ module.exports = app => {
       allowNull: false,
       defaultValue: '0'
     },
+    user_avatar: {
+      type: DataTypes.VIRTUAL,
+      get: function() {
+        return makeGravatar(this.get('user_email'))
+      }
+    },
     display_name: {
       type: DataTypes.STRING(250),
       allowNull: false,
@@ -76,6 +133,9 @@ module.exports = app => {
   });
 
   Model.associate = function (models) {
+    // HasOne and BelongsTo insert the association key in different models from each other. 
+    // HasOne inserts the association key in target model 
+    // whereas BelongsTo inserts the association key in the source model.
     Model.hasMany(app.model.WpPosts, { foreignKey: 'post_author' })
     Model.hasOne(app.model.WpOauthGithub, { foreignKey: 'user_id' })
     Model.hasOne(app.model.WpOauthWeibo, { foreignKey: 'user_id' })

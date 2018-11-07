@@ -16,7 +16,7 @@ egg + next.js + wordpress(ddl) + redux-saga(dva) + ant-design
 - [x] 整合egg，next.js 
 - [x] 整合wordpress ddl，初始化sequelize
 - [x] 整合react-intl i18n
-- [x] 登录注册, 第三方登录
+- [x] 登录注册, 第三方登录 
 - [ ] 用户管理模块
 - [ ] 后台搭建
 - [ ] 系统信息配置模块
