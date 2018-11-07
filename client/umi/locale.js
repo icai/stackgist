@@ -1,10 +1,7 @@
 /* eslint-disable no-undef */
 import cookie from '../services/cookie';
-import { locale } from '_moment@2.22.2@moment';
 const checkServer = () =>
   Object.prototype.toString.call(global.process) === '[object process]';
-
-
 
 
 let LOCALES = '';
@@ -19,6 +16,7 @@ function setLocale(lang) {
     const isServer = checkServer();
   
     if(!isServer) {
+      // egg-i18n 默认 1y 
       cookie.set('locale', lang, 365);
       window.location.reload();
     } else {
@@ -36,6 +34,7 @@ function getLocale(lang) {
       lang =  cookie.get('locale')
     }
   }
+  // egg-i18n 小写, ant-design pro 大写, 返回界面匹配
   return lang.replace(/\w+$/, (a)=> a.toUpperCase());
 }
 
