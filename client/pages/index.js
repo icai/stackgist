@@ -63,12 +63,10 @@ class Index extends PureComponent {
     }
   }
   componentDidMount() {
-    console.info(this.props);
     const { dispatch } = this.props;
     dispatch({
       type: 'user/fetchCurrent'
     });
-
     dispatch({
       type: 'project/fetchNotice'
     });
