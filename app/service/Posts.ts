@@ -1,5 +1,5 @@
 import { Service } from 'egg';
-import _ from 'lodash';
+import * as _ from 'lodash';
 
 /**
  * Posts Service
@@ -61,9 +61,7 @@ export default class Posts extends Service {
   }
 
   public async getPosts(offset = 0, limit = 10) {
-    const { app } = this;
-    const Model = app.model.WpPosts;
-    const idsobj = await Model.getAvailablePostIds(offset, limit);
+    const idsobj = await this.getAvailablePostIds(offset, limit);
     const ids = _.map(idsobj, 'id');
     return await this.getPostsByIds(ids || []);
   }

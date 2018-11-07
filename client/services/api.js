@@ -11,6 +11,47 @@ export async function queryAccountLogin(params) {
   return axios.post('/passport/local', params)
 }
 
+export async function queryPostsList(params) {
+  return axios.get('/api/posts', params)
+}
+
+export async function queryFakeList(params) {
+  return request(`/api/fake_list?${stringify(params)}`);
+}
+
+export async function removeFakeList(params) {
+  const { count = 5, ...restParams } = params;
+  return request(`/api/fake_list?count=${count}`, {
+    method: 'POST',
+    body: {
+      ...restParams,
+      method: 'delete',
+    },
+  });
+}
+
+export async function addFakeList(params) {
+  const { count = 5, ...restParams } = params;
+  return request(`/api/fake_list?count=${count}`, {
+    method: 'POST',
+    body: {
+      ...restParams,
+      method: 'post',
+    },
+  });
+}
+
+export async function updateFakeList(params) {
+  const { count = 5, ...restParams } = params;
+  return request(`/api/fake_list?count=${count}`, {
+    method: 'POST',
+    body: {
+      ...restParams,
+      method: 'update',
+    },
+  });
+}
+
 export async function queryProjectNotice() {
   return request('/api/project/notice');
 }
@@ -76,42 +117,8 @@ export async function queryAdvancedProfile() {
   return request('/api/profile/advanced');
 }
 
-export async function queryFakeList(params) {
-  return request(`/api/fake_list?${stringify(params)}`);
-}
 
-export async function removeFakeList(params) {
-  const { count = 5, ...restParams } = params;
-  return request(`/api/fake_list?count=${count}`, {
-    method: 'POST',
-    body: {
-      ...restParams,
-      method: 'delete',
-    },
-  });
-}
 
-export async function addFakeList(params) {
-  const { count = 5, ...restParams } = params;
-  return request(`/api/fake_list?count=${count}`, {
-    method: 'POST',
-    body: {
-      ...restParams,
-      method: 'post',
-    },
-  });
-}
-
-export async function updateFakeList(params) {
-  const { count = 5, ...restParams } = params;
-  return request(`/api/fake_list?count=${count}`, {
-    method: 'POST',
-    body: {
-      ...restParams,
-      method: 'update',
-    },
-  });
-}
 
 export async function fakeAccountLogin(params) {
   return request('/api/login/account', {

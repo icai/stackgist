@@ -10,6 +10,8 @@ import PageHeaderWrapper from '@/components/PageHeaderWrapper';
 
 import BasicLayout from 'layouts/BasicLayout';
 
+import Articles from './Account/Center/Articles'
+
 import styles from './index.less';
 
 const links = [
@@ -39,26 +41,34 @@ const links = [
   }
 ];
 
-@connect(({ user, project, activities, chart, loading }) => ({
+@connect(({ user, list, project, activities, chart, loading }) => ({
   currentUser: user.currentUser,
   project,
   activities,
   chart,
+  list,
   currentUserLoading: loading.effects['user/fetchCurrent'],
   projectLoading: loading.effects['project/fetchNotice'],
   activitiesLoading: loading.effects['activities/fetchList']
 }))
 class Index extends PureComponent {
   static async getInitialProps({ctx}) {
+    const  { store, req } = ctx;
+    await store.dispatch({
+      type: 'list/fetch'
+    })
+    const { user } = store.getState();
     return {
-      user: ctx.isServer ? ctx.req.user : ctx.store.getState().user.currentUser || false
+      user: ctx.isServer ? req.user : user.currentUser || false
     }
   }
   componentDidMount() {
+    console.info(this.props);
     const { dispatch } = this.props;
     dispatch({
       type: 'user/fetchCurrent'
     });
+
     dispatch({
       type: 'project/fetchNotice'
     });
@@ -68,6 +78,9 @@ class Index extends PureComponent {
     dispatch({
       type: 'chart/fetch'
     });
+    // dispatch({
+    //   type: 'list/fetch'
+    // });
   }
 
   componentWillUnmount() {
@@ -121,6 +134,7 @@ class Index extends PureComponent {
       project: { notice },
       projectLoading,
       activitiesLoading,
+      list,
       chart: { radarData }
     } = this.props;
 
@@ -213,20 +227,13 @@ class Index extends PureComponent {
               loading={activitiesLoading}
             >
               <List loading={activitiesLoading} size="large">
-
+                
                 <div className={styles.activitiesList}>{this.renderActivities()}
+                  <Articles list={list}></Articles>
 
-                                <div>
-                  Login with
-                  <a href="/passport/weibo">Weibo</a> | <a href="/passport/github">Github</a> |
-                  <a href="/passport/bitbucket">Bitbucket</a> | <a href="/passport/twitter">Twitter</a>
-                  <hr />
-                  <a href="/">Home</a> | <a href="/user">User</a> | <a href="/user/register">Register</a>
-                  <hr/>
-                  <a href="/user/login">Login</a> | <a href="/logout">Logout</a>
-                  <hr/>
-                  {JSON.stringify(user)}
-              </div>
+                  <div>
+                      {JSON.stringify(user)}
+                  </div>
                 
                 </div>
               </List>

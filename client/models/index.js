@@ -1,21 +1,4 @@
-// import global from './global';
-// import list from './list';
-// import login from './login';
-// import user from './user';
-// import setting from './setting';
-// import project from './project';
-// const model = [
-//     global,
-//     list,
-//     login,
-//     user,
-//     setting,
-//     project
-// ];
-
-// export default model;
-
-export default (app) => {
+export default app => {
   app.model({ namespace: 'global', ...require('../models/global.js').default });
   app.model({ namespace: 'list', ...require('../models/list.js').default });
   app.model({ namespace: 'login', ...require('../models/login.js').default });

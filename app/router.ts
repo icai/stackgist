@@ -31,5 +31,9 @@ export default (app: Application) => {
   router.post('/passport/local', localStrategy);
   router.post('/passport/register', controller.userApi.register);
   router.get('/logout', 'user.logout');
+
+  // api
+  router.get('/api/posts', controller.postsApi.posts)
+
   admin(app);
 };
