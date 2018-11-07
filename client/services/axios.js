@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import cookie from './cookie';
-import conf from 'config'
+import conf from '../config'
 
 const inc = axios.create();
 
