@@ -104,6 +104,7 @@ export default {
   'menu.account.settings': '個人設置',
   'menu.account.trigger': '觸發報錯',
   'menu.account.logout': '退出登錄',
+  'app.resetpass.resetpass': '找回密碼',
   'app.login.message-invalid-credentials': '賬戶或密碼錯誤（admin/888888）',
   'app.login.message-invalid-verification-code': '驗證碼錯誤',
   'app.login.tab-login-credentials': '賬戶密碼登錄',

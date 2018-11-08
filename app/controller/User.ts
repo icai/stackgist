@@ -16,4 +16,18 @@ export default class UserController extends Controller {
     const { ctx } = this;
     await ctx.render('/User/Register.js');
   }
+
+  public async resetpassword() {
+    const { ctx } = this;
+    await ctx.render('/User/ResetPassword.js');
+  }
+  public async resetpassgoto() {
+    const { ctx } = this;
+    await ctx.render('/User/ResetPassgoto.js');
+  }
+
+  public async resetpassinput() {
+    const { ctx } = this;
+    await ctx.render('/User/ResetPassinput.js');
+  }
 }

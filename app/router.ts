@@ -13,6 +13,8 @@ export default (app: Application) => {
   router.get('/user/login', controller.user.login);
   router.get('/user/register', controller.user.register);
 
+  router.get('/user/resetpassword', controller.user.resetpassword);
+
   const weiboAuth = app.passport.authenticate('weibo');
   router.get('/passport/weibo', weiboAuth);
   router.get('/passport/weibo/callback', weiboAuth);

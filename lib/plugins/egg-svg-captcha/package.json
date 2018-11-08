@@ -1,0 +1,6 @@
+{
+    "name": "egg-svg-captcha",
+    "eggPlugin": {
+        "name": "svgCaptcha"
+    }
+}
