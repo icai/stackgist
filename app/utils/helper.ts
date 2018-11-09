@@ -2,6 +2,7 @@ import { md5 } from '../utils/crypto';
 import { rand } from '../utils/random';
 import * as qs from 'qs';
 
+// 先保留,  model 好像访问不了, ctx 作用域
 export const makeGravatar = (email, args = {} as any) => {
   args = Object.assign(
     {

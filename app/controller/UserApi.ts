@@ -10,14 +10,10 @@ export default class UserApiController extends Controller {
     try {
       const user = await ctx.service.user.createRegisterUser(params);
       if (user) {
-        ctx.body = JSON.stringify({
-          success: true
-        });
+        ctx.success();
       }
     } catch (e) {
-      ctx.body = JSON.stringify({
-        success: false
-      });
+      ctx.fail();
     }
   }
   /**

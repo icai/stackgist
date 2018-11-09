@@ -18,7 +18,7 @@ export default class User extends Service {
    * @param args url 参数
    */
   public makeGravatar(email, args = {} as any) {
-    return makeGravatar(email, args);
+    return this.ctx.makeGravatar(email, args);
   }
 
   public getGravatar(user) {
