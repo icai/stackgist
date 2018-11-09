@@ -7,6 +7,7 @@ declare module 'egg' {
   interface Application {
     passport: any;
     redis: any;
+    captcha: any;
   }
 }
 export default (app: Application) => {

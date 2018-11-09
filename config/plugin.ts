@@ -45,6 +45,11 @@ plugin.reactIntl = {
   path: path.join(__dirname, '../lib/plugins/egg-react-intl')
 };
 
+plugin.svgCaptcha = {
+  enable: true,
+  path: path.join(__dirname, '../lib/plugins/egg-svg-captcha')
+};
+
 plugin.routerPlus = {
   enable: true,
   package: 'egg-router-plus'
