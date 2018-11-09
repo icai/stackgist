@@ -1,6 +1,6 @@
 import { Service } from 'egg';
 
-export default class Cache extends Service {
+export default class CacheService extends Service {
   async get(key) {
     const { redis, logger } = this.app;
     const t = Date.now();

@@ -82,8 +82,7 @@ export default class User extends Service {
     return await WpUsers.findOne({
       where: {
         user_email: email
-      },
-      raw: true
+      }
     });
   }
   /**

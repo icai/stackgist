@@ -34,11 +34,8 @@ export default (app: Application) => {
   router.post('/passport/register', controller.userApi.register);
   router.get('/logout', 'user.logout');
 
-  router.get('/s/captcha', app.captcha.useCaptcha('login'));
-
-  router.get('/g/captcha', (ctx, _next) => {
-    ctx.body = app.captcha.getCache(ctx, 'login');
-  });
+  // 重置密码 图片验证
+  router.get('/s/captcha', app.captcha.useCaptcha());
 
   // api
   router.get('/api/posts', controller.postsApi.posts)

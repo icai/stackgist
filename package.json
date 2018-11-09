@@ -121,7 +121,8 @@
     "svg-captcha": "^1.3.11",
     "throttle-debounce": "^2.0.1",
     "timeago.js": "^4.0.0-beta.1",
-    "url-loader": "^1.1.1"
+    "url-loader": "^1.1.1",
+    "validator": "^10.9.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
