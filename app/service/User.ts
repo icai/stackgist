@@ -1,6 +1,5 @@
 import { Service } from 'egg';
 import { nowISO } from '../utils/datetime';
-import { makeGravatar } from '../utils/helper';
 import { randomString } from '../utils/random';
 /**
  * User Service
