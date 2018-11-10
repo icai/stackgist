@@ -46,8 +46,13 @@ class Register extends Component {
     confirmDirty: false,
     visible: false,
     help: '',
-    prefix: '86'
+    prefix: '86',
+    captchaUrl: '/s/captcha'
   };
+
+  getCaptchaUrl () {
+    return '/s/captcha' + '?' +  parseInt(Math.random() * 10e10)
+  }
 
   componentDidUpdate() {
     const { form, register } = this.props;
@@ -67,15 +72,9 @@ class Register extends Component {
   }
 
   onGetCaptcha = () => {
-    let count = 59;
-    this.setState({ count });
-    this.interval = setInterval(() => {
-      count -= 1;
-      this.setState({ count });
-      if (count === 0) {
-        clearInterval(this.interval);
-      }
-    }, 1000);
+    this.setState({
+      captchaUrl: this.getCaptchaUrl()
+    })
   };
 
   getPasswordStatus = () => {
@@ -177,7 +176,7 @@ class Register extends Component {
   render() {
     const { form, submitting } = this.props;
     const { getFieldDecorator } = form;
-    const { count, prefix, help, visible } = this.state;
+    const { count, prefix, help, visible, captchaUrl } = this.state;
     return (
       <UserLayout>
         <div className={styles.main}>
@@ -207,6 +206,31 @@ class Register extends Component {
               )}
             </FormItem>
             <FormItem>
+              <Row gutter={8}>
+                <Col span={13}>
+                  {getFieldDecorator('captcha', {
+                    rules: [
+                      {
+                        required: true,
+                        message: formatMessage({ id: 'validation.verification-code.required' }),
+                      },
+                    ],
+                  })(
+                    <Input
+                      size="large"
+                      placeholder={formatMessage({ id: 'form.verification-code.placeholder' })}
+                    />
+                  )}
+                </Col>
+                <Col span={10}>
+                  <a className={styles.getCaptcha}
+                     onClick={this.onGetCaptcha} >
+                    <img src={captchaUrl} ></img>
+                  </a>
+                </Col>
+              </Row>
+            </FormItem>
+            <FormItem>
               <Button
                 size="large"
                 loading={submitting}
@@ -214,7 +238,7 @@ class Register extends Component {
                 type="primary"
                 htmlType="submit"
               >
-                <FormattedMessage id="app.register.register" />
+                <FormattedMessage id="app.resetpass.nextstep" />
               </Button>
               <Link className={styles.login} to="/User/Login">
                 <FormattedMessage id="app.register.sing-in" />

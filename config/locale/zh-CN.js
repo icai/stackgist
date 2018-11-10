@@ -105,6 +105,7 @@ export default {
   'menu.account.trigger': '触发报错',
   'menu.account.logout': '退出登录',
   'app.resetpass.resetpass': '找回密码',
+  'app.resetpass.nextstep': '下一步',
   'app.login.message-invalid-credentials': '账户或密码错误（admin/888888）',
   'app.login.message-invalid-verification-code': '验证码错误',
   'app.login.tab-login-credentials': '账户密码登录',

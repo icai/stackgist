@@ -74,6 +74,7 @@ export default {
   'menu.account.trigger': 'Disparar Erro',
   'menu.account.logout': 'Sair',
   'app.resetpass.resetpass': 'Recuperar senha',
+  'app.resetpass.nextstep': '下一步',
   'app.login.message-invalid-credentials': 'Nome de usuário ou senha inválidosd（admin/888888）',
   'app.login.message-invalid-verification-code': 'Código de verificação inválido',
   'app.login.tab-login-credentials': 'Credenciais',

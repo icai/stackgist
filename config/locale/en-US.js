@@ -107,6 +107,7 @@ export default {
   'menu.account.trigger': 'Trigger Error',
   'menu.account.logout': 'Logout',
   'app.resetpass.resetpass': 'Retrieve password',
+  'app.resetpass.nextstep': '下一步',
   'app.login.message-invalid-credentials': 'Invalid username or password（admin/888888）',
   'app.login.message-invalid-verification-code': 'Invalid verification code',
   'app.login.tab-login-credentials': 'Credentials',
