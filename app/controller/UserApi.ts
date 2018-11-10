@@ -42,12 +42,12 @@ export default class UserApiController extends Controller {
       });
       return;
     }
-    // 动态生成retrive_key和timestamp到users collection,之后重置密码进行验证
+    // 动态生成retrive_key,之后重置密码进行验证
     const retrieveKey = randomString(12);
     const user = await service.user.getUserByMail(email);
     if (!user) {
       ctx.fail({
-        error: '没有这个电子邮箱。',
+        message: '没有这个电子邮箱。',
         email,
       });
       return;
@@ -58,7 +58,7 @@ export default class UserApiController extends Controller {
     // 发送重置密码邮件
     service.mail.sendResetPassMail(email, retrieveKey, user.user_login);
     ctx.fail({
-      success: '我们已给您填写的电子邮箱发送了一封邮件，请在24小时内点击里面的链接来重置密码。',
+      message: '我们已给您填写的电子邮箱发送了一封邮件，请在24小时内点击里面的链接来重置密码。',
     });
   }
 }
