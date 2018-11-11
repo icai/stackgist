@@ -107,6 +107,11 @@ export default {
   'app.resetpass.findpass': '找回密碼',
   'app.resetpass.nextstep': '下一步',
   'app.resetpass.resetpass': '找回密碼',
+  'app.resetpass-result.msg': '妳的賬戶：{message}',
+  'app.resetpass-result.activation-email':
+    '激活郵件已發送到妳的郵箱中，郵件有效期為1小時。請及時登錄郵箱，點擊郵件中的鏈接激活帳戶。',
+  'app.resetpass-result.back-home': '返回首頁',
+  'app.resetpass-result.view-mailbox': '查看郵箱',
   'app.login.message-invalid-credentials': '賬戶或密碼錯誤（admin/888888）',
   'app.login.message-invalid-verification-code': '驗證碼錯誤',
   'app.login.tab-login-credentials': '賬戶密碼登錄',

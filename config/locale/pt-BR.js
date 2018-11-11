@@ -76,6 +76,11 @@ export default {
   'app.resetpass.findpass': 'Recuperar senha',
   'app.resetpass.nextstep': '下一步',
   'app.resetpass.resetpass': '重置密码',
+  'app.resetpass-result.msg': 'Conta：{message}',
+  'app.resetpass-result.activation-email':
+    'Um email de ativação foi enviado para o seu email e é válido por 24 horas. Por favor entre no seu email e clique no link de ativação da conta.',
+  'app.resetpass-result.back-home': 'Voltar ao Início',
+  'app.resetpass-result.view-mailbox': 'Visualizar a caixa de email',
   'app.login.message-invalid-credentials': 'Nome de usuário ou senha inválidosd（admin/888888）',
   'app.login.message-invalid-verification-code': 'Código de verificação inválido',
   'app.login.tab-login-credentials': 'Credenciais',

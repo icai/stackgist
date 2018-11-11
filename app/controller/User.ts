@@ -1,5 +1,5 @@
 import { Controller } from 'egg';
-import validator from 'validator';
+import * as validator from 'validator';
 export default class UserController extends Controller {
   public async logout() {
     const { ctx } = this;
@@ -35,7 +35,8 @@ export default class UserController extends Controller {
     if(!retrieveTime) {
       ctx.status = 403;
       await this.ctx.render('/User/notify.js' , {
-        error: '该链接已过期，请重新申请。',
+        message: '该链接已过期，请重新申请。',
+        type: 'error'
       });
       return;
     } else {
@@ -44,7 +45,8 @@ export default class UserController extends Controller {
       } else {
         ctx.status = 403;
         await this.ctx.render('/User/notify.js', {
-          error: '信息有误，密码无法重置。',
+          message: '信息有误，密码无法重置。',
+          type: 'error'
         });
         return;
       }

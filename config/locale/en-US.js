@@ -109,6 +109,11 @@ export default {
   'app.resetpass.findpass': 'Retrieve password',
   'app.resetpass.nextstep': '下一步',
   'app.resetpass.resetpass': 'Reset password',
+  'app.resetpass-result.msg': 'Account：{message}',
+  'app.resetpass-result.activation-email':
+    'The activation email has been sent to your email address and is valid for 24 hours. Please log in to the email in time and click on the link in the email to activate the account.',
+  'app.resetpass-result.back-home': 'Back to home',
+  'app.resetpass-result.view-mailbox': 'View mailbox',
   'app.login.message-invalid-credentials': 'Invalid username or password（admin/888888）',
   'app.login.message-invalid-verification-code': 'Invalid verification code',
   'app.login.tab-login-credentials': 'Credentials',

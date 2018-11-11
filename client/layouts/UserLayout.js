@@ -30,7 +30,7 @@ class UserLayout extends React.PureComponent {
   // }
 
   render() {
-    const { children } = this.props;
+    const { children, onlyLogo } = this.props;
     const links = [
       {
         key: 'help',
@@ -55,8 +55,7 @@ class UserLayout extends React.PureComponent {
           <SelectLang />
         </div>
         <div className={styles.content}>
-          <div className={styles.main}>
-            <div className={styles.top}>
+          {onlyLogo ? <div className={styles.top}>
               <div className={styles.header}>
                 <Link to="/">
                   <img alt="logo" className={styles.logo} src={logo} />
@@ -64,7 +63,17 @@ class UserLayout extends React.PureComponent {
                 </Link>
               </div>
               <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
-            </div>
+            </div> : ''}
+          <div className={onlyLogo ? styles.mainonly : styles.main}>
+            {!onlyLogo && <div className={styles.top}>
+              <div className={styles.header}>
+                <Link to="/">
+                  <img alt="logo" className={styles.logo} src={logo} />
+                  <span className={styles.title}>Ant Design</span>
+                </Link>
+              </div>
+              <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+            </div>}
             {children}
           </div>
         </div>
