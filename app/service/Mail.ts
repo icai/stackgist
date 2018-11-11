@@ -79,7 +79,7 @@ export default class MailService extends Service {
       '社区重置密码的请求，请在24小时内单击下面的链接来重置密码：</p>' +
       '<a href="' +
       config.host +
-      '/reset_pass?key=' +
+      '/user/resetpassinput?key=' +
       token +
       '&name=' +
       name +

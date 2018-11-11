@@ -15,6 +15,8 @@ export default (app: Application) => {
 
   router.get('/user/resetpassword', controller.user.resetpassword);
 
+  router.get('/user/resetpassinput', controller.user.resetpassinput);
+
   const weiboAuth = app.passport.authenticate('weibo');
   router.get('/passport/weibo', weiboAuth);
   router.get('/passport/weibo/callback', weiboAuth);

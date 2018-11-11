@@ -181,7 +181,7 @@ class Register extends Component {
       <UserLayout>
         <div className={styles.main}>
           <h3>
-            <FormattedMessage id="app.resetpass.resetpass" />
+            <FormattedMessage id="app.resetpass.findpass" />
           </h3>
           <Form onSubmit={this.handleSubmit}>
             <FormItem>

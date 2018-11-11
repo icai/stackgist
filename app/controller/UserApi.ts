@@ -55,6 +55,7 @@ export default class UserApiController extends Controller {
     // 不常用字段 redis 比较合适
     // 1小时内有效
     await service.cache.setex('retrieve_key' + user.user_login, retrieveKey, 3600);
+    await service.cache.setex('retrieve_time' + user.user_login, 1, 3600);
     // 发送重置密码邮件
     service.mail.sendResetPassMail(email, retrieveKey, user.user_login);
     ctx.fail({

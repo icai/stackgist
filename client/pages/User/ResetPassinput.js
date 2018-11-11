@@ -185,24 +185,53 @@ class Register extends Component {
             <FormattedMessage id="app.resetpass.resetpass" />
           </h3>
           <Form onSubmit={this.handleSubmit}>
+            <FormItem help={help}>
+              <Popover
+                getPopupContainer={node => node.parentNode}
+                content={
+                  <div style={{ padding: '4px 0' }}>
+                    {passwordStatusMap[this.getPasswordStatus()]}
+                    {this.renderPasswordProgress()}
+                    <div style={{ marginTop: 10 }}>
+                      <FormattedMessage id="validation.password.strength.msg" />
+                    </div>
+                  </div>
+                }
+                overlayStyle={{ width: 240 }}
+                placement="right"
+                visible={visible}
+              >
+                {getFieldDecorator('password', {
+                  rules: [
+                    {
+                      validator: this.checkPassword,
+                    },
+                  ],
+                })(
+                  <Input
+                    size="large"
+                    type="password"
+                    placeholder={formatMessage({ id: 'form.password.placeholder' })}
+                  />
+                )}
+              </Popover>
+            </FormItem>
             <FormItem>
-              {getFieldDecorator('mail', {
+              {getFieldDecorator('confirm', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'validation.email.required' })
+                    message: formatMessage({ id: 'validation.confirm-password.required' }),
                   },
                   {
-                    type: 'email',
-                    message: formatMessage({
-                      id: 'validation.email.wrong-format'
-                    })
-                  }
-                ]
+                    validator: this.checkConfirm,
+                  },
+                ],
               })(
                 <Input
                   size="large"
-                  placeholder={formatMessage({ id: 'form.email.placeholder' })}
+                  type="password"
+                  placeholder={formatMessage({ id: 'form.confirm-password.placeholder' })}
                 />
               )}
             </FormItem>
