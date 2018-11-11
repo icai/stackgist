@@ -20,7 +20,6 @@ const actions = (
     </Link>
   </div>
 );
-
 const RegisterResult = function ({ query }) {
   return (
     <UserLayout onlyLogo >
