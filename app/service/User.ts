@@ -28,8 +28,8 @@ export default class User extends Service {
    * @param param0 用户信息
    */
   public async createRegisterUser({ userName, password }) {
-    const { app, ctx } = this;
-    const { WpUsers } = app.model;
+    const { ctx } = this;
+    const { WpUsers } = ctx;
     const pass = ctx.helper.bhash(password);
     const sysuser = await WpUsers.create(
       {
@@ -76,8 +76,8 @@ export default class User extends Service {
    * @param email 邮件
    */
   public async getUserByMail(email) {
-    const { app } = this;
-    const { WpUsers } = app.model;
+    const { ctx } = this;
+    const { WpUsers } = ctx;
     return await WpUsers.findOne({
       where: {
         user_email: email
@@ -89,8 +89,8 @@ export default class User extends Service {
    * @param username 用户名
    */
   public async getUserByLoginName(username) {
-    const { app } = this;
-    const { WpUsers } = app.model;
+    const { ctx } = this;
+    const { WpUsers } = ctx;
     return await WpUsers.findOne({
       where: {
         user_login: username
@@ -103,8 +103,8 @@ export default class User extends Service {
    * @param id weiboid
    */
   public async getUserByWeiboId(id) {
-    const { app } = this;
-    const { WpUsers, WpOauthWeibo } = app.model;
+    const { ctx } = this;
+    const { WpUsers, WpOauthWeibo } = ctx;
     return await WpUsers.findOne({
       include: [
         {
@@ -125,8 +125,8 @@ export default class User extends Service {
    */
   public async createUserByWeiboInfo(res) {
     const { profile } = res;
-    const { app, ctx } = this;
-    const { WpUsers, WpOauthWeibo } = app.model;
+    const { ctx } = this;
+    const { WpUsers, WpOauthWeibo } = ctx;
     let weibouser = await WpOauthWeibo.findOne({
       attributes: ['id', 'user_id'],
       where: {
@@ -179,8 +179,8 @@ export default class User extends Service {
    * @param id github id
    */
   public async getUserByGithubId(id) {
-    const { app } = this;
-    const { WpUsers, WpOauthGithub } = app.model;
+    const { ctx } = this;
+    const { WpUsers, WpOauthGithub } = ctx;
     return await WpUsers.findOne({
       include: [
         {
@@ -201,8 +201,8 @@ export default class User extends Service {
    */
   public async createUserByGithubInfo(res) {
     const { profile } = res;
-    const { app, ctx } = this;
-    const { WpUsers, WpOauthGithub } = app.model;
+    const { ctx } = this;
+    const { WpUsers, WpOauthGithub } = ctx;
     const email =
       profile.emails && profile.emails[0] && profile.emails[0].value;
     const githubuser = await WpOauthGithub.findOne({

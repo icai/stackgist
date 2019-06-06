@@ -21,9 +21,9 @@ export default class Posts extends Service {
   }
 
   public async getAvailablePostIds(offset = 0, limit = 10) {
-    const { app } = this;
-    const Model = app.model.WpPosts;
-    const DataTypes = app.Sequelize;
+    const { ctx } = this;
+    const Model = ctx.WpPosts;
+    const DataTypes = ctx.Sequelize;
     const Op = DataTypes.Op;
     return await Model.findAll({
       offset,
@@ -46,9 +46,9 @@ export default class Posts extends Service {
   }
 
   public async getPostsByIds(ids) {
-    const { app } = this;
-    const { WpPosts, WpUsers } = app.model;
-    const DataTypes = app.Sequelize;
+    const { ctx } = this;
+    const { WpPosts, WpUsers } = ctx;
+    const DataTypes = ctx.Sequelize;
     const Op = DataTypes.Op;
     return await WpPosts.findAll({
       where: {

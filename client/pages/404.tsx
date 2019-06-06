@@ -2,7 +2,6 @@ import React from 'react';
 import Link from 'components/link';
 import Exception from 'components/Exception';
 import { Layout } from 'antd';
-import Footer from 'layouts/Footer';
 
 const { Content } = Layout;
 
@@ -20,6 +19,5 @@ export default () => (
         backText={'Back to home'}
       />
     </Content>
-    <Footer />
   </Layout>
 );

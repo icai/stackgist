@@ -83,6 +83,7 @@ app/**/*.map
 test/**/*.map
 config/**/*.map
 private/config.ts
+app/view
 !lib/**/*.js
 !config/**/*.js
 !app/model/**/*.js

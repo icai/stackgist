@@ -38,6 +38,14 @@ export default (appInfo: EggAppInfo) => {
     }
   };
 
+  const assets = {
+    devServer: {
+      command: 'next ./client',
+      port: 3000
+    },
+  };
+
+
   const i18n = {
     // 默认语言，默认 "en_US"
     defaultLocale: 'zh-CN',
@@ -53,16 +61,29 @@ export default (appInfo: EggAppInfo) => {
   return {
     view,
     i18n,
+    assets,
     nextview: {
       dir: './client'
     },
     sequelize: {
+      delegate: 'model',
+      baseDir: 'model',
+      // logging(...args) {
+      //   // if benchmark enabled, log used
+      //   const used = typeof args[1] === 'number' ? `[${args[1]}ms]` : '';
+      //   app.logger.info('[egg-sequelize]%s %s', used, args[0]);
+      // },
       dialect: 'mysql', // support: mysql, mariadb, postgres, mssql
       database: 'stackgist',
       host: 'localhost',
       port: '3306',
       username: 'root',
-      password: 'root123456'
+      password: 'root123456',
+      benchmark: true,
+      define: {
+        freezeTableName: false,
+        underscored: true,
+      }
       // delegate: 'myModel', // load all models to `app[delegate]` and `ctx[delegate]`, default to `model`
       // baseDir: 'model' // load all files in `app/${baseDir}` as models, default to `model`
       // exclude: 'index.js', // ignore `app/${baseDir}/index.js` when load models, support glob and array

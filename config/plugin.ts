@@ -35,6 +35,11 @@ plugin.redis = {
   package: 'egg-redis'
 };
 
+plugin.assets = {
+  enable: true,
+  package: 'egg-view-assets',
+};
+
 plugin.nextview = {
   enable: true,
   path: path.join(__dirname, '../lib/plugins/egg-view-nextjs')

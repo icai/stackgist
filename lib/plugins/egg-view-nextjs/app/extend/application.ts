@@ -1,4 +1,6 @@
-import * as next from 'next';
+// import * as next from 'next';
+// tslint:disable-next-line: no-var-requires
+const next = require('next');
 const NEXT = Symbol('Application#next');
 export default {
   get next() {

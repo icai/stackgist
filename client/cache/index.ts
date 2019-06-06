@@ -3,16 +3,16 @@ import LRU from "lru-cache";
 
 const options = {
     max: 500,
-    length: function(n, key) {
+    length(n, key) {
       return n * 2 + key.length;
     },
     // @ts-ignore
-    dispose: function(key, n) {
+    dispose(key, n) {
       n.close();
     },
     maxAge: 1000 * 60 * 60
-  },
-  cache = LRU(options); // sets just the max size
+  };
+const cache = new LRU(options); // sets just the max size
 
 export default cache;
 

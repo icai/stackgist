@@ -1,14 +1,22 @@
 require('dotenv').config();
-const withTypescript = require('@zeit/next-typescript');
+// const withTypescript = require('@zeit/next-typescript');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
 const withSass = require('@zeit/next-sass');
-// const withLess = require('@zeit/next-less');
+const withLess = require('@zeit/next-less');
 const withCSS = require('@zeit/next-css');
 const cssLoaderConfig = require('@zeit/next-css/css-loader-config');
 const NODE_ENV = process.env.NODE_ENV;
-const wts = withTypescript({
+
+
+// if (typeof require !== 'undefined') {
+//   require.extensions['.less'] = (file) => {}
+// }
+
+// const withLess = require('./next.less.config.js')
+
+module.exports = withLess(withSass(withCSS({
   webpack(config, options) {
     config.plugins = config.plugins || [];
 
@@ -65,93 +73,18 @@ const wts = withTypescript({
     //   }]
     // })
 
-    config.module.rules.push({
-      test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-      loader: 'url-loader',
-      options: {
-        limit: 10000,
-        publicPath: '../images/',
-        outputPath: 'static/images/',
-        name: '[name].[hash].[ext]'
-      }
-    });
+    // config.module.rules.push({
+    //   test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+    //   loader: 'url-loader',
+    //   options: {
+    //     limit: 10000,
+    //     publicPath: '../images/',
+    //     outputPath: 'static/images/',
+    //     name: '[name].[hash].[ext]'
+    //   }
+    // });
 
-    options.defaultLoaders.less = cssLoaderConfig(config, {
-      extensions: ['less'],
-      cssModules: true,
-      cssLoaderOptions: {
-        importLoaders: 3,
-        localIdentName: '[local]___[hash:base64:5]'
-      },
-      postcssLoaderOptions,
-      dev,
-      isServer,
-      loaders: [
-        {
-          loader: 'less-loader',
-          options: {
-            javascriptEnabled: true
-          }
-        }
-      ]
-    });
-
-    // use cssModules
-    config.module.rules.push({
-      test: /\.less$/,
-      exclude: [/node_modules/, /assets/],
-      use: options.defaultLoaders.less
-    });
-
-    // don't use cssModules
-    config.module.rules.push({
-      test: /\.less$/,
-      include: [/node_modules/, /assets/],
-      use: cssLoaderConfig(config, {
-        extensions: ['less'],
-        postcssLoaderOptions,
-        dev,
-        isServer,
-        loaders: [
-          {
-            loader: 'less-loader',
-            options: {
-              javascriptEnabled: true
-            }
-          }
-        ]
-      })
-    });
-
-    options.defaultLoaders.css = cssLoaderConfig(config, {
-      extensions: ['css'],
-      cssModules: true,
-      cssLoaderOptions: {
-        importLoaders: 1,
-        localIdentName: '[local]___[hash:base64:5]'
-      },
-      postcssLoaderOptions,
-      dev,
-      isServer
-    });
-
-    config.module.rules.push({
-      test: /\.css$/,
-      exclude: [/node_modules/, /assets/],
-      use: options.defaultLoaders.css
-    });
-
-    config.module.rules.push({
-      test: /\.css$/,
-      include: [/node_modules/, /assets/],
-      use: cssLoaderConfig(config, {
-        extensions: ['css'],
-        postcssLoaderOptions,
-        dev,
-        isServer
-      })
-    });
-
+  
     // config.module.rules.push({
     //   test: /\.css$/,
     //   loader: 'px2rem-loader',
@@ -162,16 +95,12 @@ const wts = withTypescript({
     // })
 
     return config;
-  }
-});
-const wsass = withSass({
-  ...wts
-});
-
-const conf = {
-  ...wsass
-};
-module.exports = {
-  useFileSystemPublicRoutes: false,
-  ...conf
-};
+  },
+  cssModules: true,
+  lessLoaderOptions: {
+    cssModules: true,
+    javascriptEnabled: true
+  },
+  distDir: "../app/view",
+  target: 'serverless'
+})))

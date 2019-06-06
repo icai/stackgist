@@ -10,10 +10,10 @@ export default class Test extends Service {
    * @param name - your name
    */
   public async sayHi(name: string) {
-    const { app } = this;
+    const { ctx } = this;
 
     try {
-      await app.model.WpPosts.create({ post_content: 'elisa', post_title: name });
+      await ctx.WpPosts.create({ post_content: 'elisa', post_title: name });
     } catch (error) {
       return {
           error: true,

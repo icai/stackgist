@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import dva, { connect } from 'dva';
-import createLoading from 'dva-loading';
 import { Provider } from 'react-redux';
 import model from '../models';
 
@@ -19,7 +18,6 @@ function createDvaStore(initialState) {
   } else {
     app = dva({});
   }
-  app.use(createLoading());
 
   model(app);
   // const isArray = Array.isArray(model);
