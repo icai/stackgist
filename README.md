@@ -34,16 +34,22 @@ egg + next.js + wordpress(ddl) + redux-saga(dva) + ant-design
 - https://github.com/ruby-china/homeland
 
 
-## 注意
+## 注意事项
 
 本项目是前端端深度结合项目，本想结合最新技术还原web 2.0 MVC 的最佳实践。
-后端逻辑没有问题，前端也没有问题，问题存在框架整合上，开发编译性能不佳。
+后端逻辑没有问题，前端也没有问题，**问题存在框架整合上，开发编译性能不佳**。
 
-已弃坑，egg和 nextjs框架兼容存在某些问题，可以转到 https://github.com/jaredpalmer/razzle
+**已弃坑**，egg和 nextjs框架兼容存在某些问题，可以尝试转到 https://github.com/jaredpalmer/razzle
 
 serverless as view
 
 https://github.com/zeit/next.js/issues/7528
+
+
+## 推荐附带产物
+
+ - [egg-svg-captcha](https://github.com/icai/stackgist/tree/master/lib/plugins/egg-view-nextjs)
+ 
 
 
 
