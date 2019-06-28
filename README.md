@@ -1,7 +1,7 @@
 # stackgist
 stackgist
 
-挖坑中
+已弃坑
 
 
 
@@ -39,7 +39,7 @@ egg + next.js + wordpress(ddl) + redux-saga(dva) + ant-design
 本项目是前端端深度结合项目，本想结合最新技术还原web 2.0 MVC 的最佳实践。
 后端逻辑没有问题，前端也没有问题，**问题存在框架整合上，开发编译性能不佳**。
 
-**已弃坑**，egg和 nextjs框架兼容存在某些问题，可以尝试转到 https://github.com/jaredpalmer/razzle
+**已弃坑**，egg和 nextjs框架兼容存在某些问题，可以尝试转到 https://github.com/jaredpalmer/razzle 或者 https://github.com/easy-team/egg-react-webpack-boilerplate
 
 serverless as view
 
