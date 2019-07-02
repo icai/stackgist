@@ -48,7 +48,7 @@ https://github.com/zeit/next.js/issues/7528
 
 ## 推荐附带产物
 
- - [egg-svg-captcha](https://github.com/icai/stackgist/tree/master/lib/plugins/egg-view-nextjs)
+ - [egg-svg-captcha](https://github.com/icai/stackgist/tree/master/lib/plugins/egg-svg-captcha)
  
 
 
