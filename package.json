@@ -53,7 +53,7 @@
   "dependencies": {
     "@antv/data-set": "^0.9.6",
     "antd": "^3.10.1",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-plugin-import": "^1.10.0",
     "bcryptjs": "^2.4.3",
     "bizcharts": "^3.2.4",
