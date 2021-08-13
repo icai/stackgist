@@ -92,7 +92,7 @@
     "mockjs": "^1.0.1-beta3",
     "moment": "^2.22.2",
     "mysql2": "^1.6.1",
-    "next": "^7.0.2",
+    "next": "^11.1.0",
     "node-sass": "^4.9.3",
     "nodemailer": "^4.6.8",
     "nodemailer-smtp-transport": "^2.7.4",
